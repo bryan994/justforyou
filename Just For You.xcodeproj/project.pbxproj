@@ -99,7 +99,6 @@
 		A41664E21E8B5A6900417B63 /* Just For YouUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Just For YouUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41664E61E8B5A6900417B63 /* Just_For_YouUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_For_YouUITests.swift; sourceTree = "<group>"; };
 		A41664E81E8B5A6900417B63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A416650A1E8B5DA700417B63 /* Just For You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Just For You.entitlements"; sourceTree = "<group>"; };
 		A416650C1E8B5E0900417B63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A41665161E8B5F1500417B63 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A41665171E8B5F1500417B63 /* MemoriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoriesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		A41CADA71EC0573100280529 /* LivefeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivefeedViewController.swift; sourceTree = "<group>"; };
 		A41CADA91EC0575700280529 /* Livefeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Livefeed.swift; sourceTree = "<group>"; };
 		A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivefeedTableViewCell.swift; sourceTree = "<group>"; };
+		A422987A1ECEEEBB00E71B14 /* Just For You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Just For You.entitlements"; sourceTree = "<group>"; };
 		A423586C1EAA171A00DCE4BE /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A438467D1ECD9E1D0061AE9D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		A438467F1ECDA1680061AE9D /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -320,8 +320,8 @@
 				A416652B1E8B634C00417B63 /* GoogleService-Info.plist */,
 				A44AFCCE1E932DB700581EC5 /* giphy.gif */,
 				A44AFCCC1E932DAD00581EC5 /* 200w_d.gif */,
+				A422987A1ECEEEBB00E71B14 /* Just For You.entitlements */,
 				A41664D21E8B5A6900417B63 /* Info.plist */,
-				A416650A1E8B5DA700417B63 /* Just For You.entitlements */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -422,6 +422,9 @@
 							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
