@@ -35,25 +35,31 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(VerificationViewController.dismissKeyboard)))
         self.view.backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1)
+        
     }
     
     func dismissKeyboard() {
         
         self.textField.resignFirstResponder()
+        
     }
     
     @IBAction func submitButton(_ sender: Any) {
                 
         if self.textField.text == "" {
+            
             self.performSegue(withIdentifier: "HomeSegue", sender: self)
             
         }else if (self.textField.text?.isEmpty)! {
+            
             let alert2 = UIAlertController(title: "Enter Password", message: "Please enter password to proceed", preferredStyle: .alert)
             let dismissButton = UIAlertAction(title: "Try Again", style: .default, handler: nil)
             
             alert2.addAction(dismissButton)
             self.present(alert2, animated: true, completion: nil)
+            
         }else {
+            
             let alert = UIAlertController(title: "You have entered a wrong password.", message: "The screen is lock for 5 seconds", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
             // change to desired number of seconds (in this case 5 seconds)
@@ -61,6 +67,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: when){
                 // your code with delay
                 alert.dismiss(animated: true, completion: nil)
+                
             }
         }
     }
@@ -77,12 +84,16 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         self.label.text = array[self.counter]
         
         if self.counter == 4{
+            
             counter = 4
+            
         }else{
+            
             counter += 1
 
         }
     }
+    
     @IBAction func logOutButton(_ sender: Any) {
         
         try! FIRAuth.auth()?.signOut()
@@ -91,6 +102,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         loginManager.logOut()
         
         goBackToLogin()
+        
     }
     
     func goBackToLogin() {
@@ -99,6 +111,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let LogInViewController = storyboard.instantiateInitialViewController()
         appDelegateTemp.window?!.rootViewController = LogInViewController
+        
     }
 }
 

@@ -15,9 +15,13 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate{
 
     @IBOutlet weak var email: UITextField!
+    
     @IBOutlet weak var password: UITextField!
+    
     @IBOutlet weak var googleLogin: GIDSignInButton!
+    
     @IBOutlet weak var fbLogin: FBSDKLoginButton!
+    
     @IBOutlet weak var userLoginButton: UIButton!
     
     override func viewDidLoad() {
@@ -70,12 +74,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
         if (error != nil) {
+            
             print(error.localizedDescription)
             
         }else if (result.isCancelled) {
+            
             print("Facebook cancelled")
             
         }else {
+            
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             
             FIRAuth.auth()?.signIn(with: credential) { (user, error) in
@@ -87,11 +94,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                     var userDict: Dictionary<String, String> = [:]
                     
                     if user.providerData[0].displayName != nil {
+                        
                         userDict["username"] = user.providerData[0].displayName
+                        
                     }
+                    
                     if user.providerData[0].email != nil {
+                        
                         userDict["email"] = user.providerData[0].email
+                        
                     }
+                    
                     currentUserRef.setValue(userDict)
                     
                     let appDelegateTemp = UIApplication.shared.delegate!
@@ -131,6 +144,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                 self.present(alertController, animated: true, completion: nil)
                 
             }else {
+                
                 let controller = UIAlertController(title: "Your email or password is incorrect?", message: "Please enter again", preferredStyle: .alert)
                 let dismissButton = UIAlertAction(title: "Try Again", style: .default, handler: nil)
                 

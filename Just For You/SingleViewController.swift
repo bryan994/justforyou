@@ -57,16 +57,23 @@ class SingleViewController: UIViewController {
         self.navigationItem.title = "Photo"
 
         guard let currentImageID = self.imageUID else {
+           
             return
         }
         DataService.imagesRef.child(currentImageID).observeSingleEvent(of: .value, with: {imageSnapshot in
+            
             if let image = Image(snapshot: imageSnapshot) {
+                
                 DataService.usersRef.child(User.currentUserUid()!).observeSingleEvent(of:.value, with: {userSnapshot in
+                    
                     if let user = User(snapshot: userSnapshot) {
+                        
                         image.pImage = user.profileImage
                         
                         if image.caption != "" {
+                            
                             if let username = user.username, let caption = image.caption {
+                                
                                 let combination = NSMutableAttributedString()
                                 let transformCaption = Font.NormalString(text: caption, size: 14)
                                 let boldUsername = Font.BoldString(text: "\(username) ", size: 14)
@@ -74,12 +81,17 @@ class SingleViewController: UIViewController {
                                 combination.append(transformCaption)
                                 self.captionLabel.attributedText = combination
                                 self.captionLabel.isHidden = false
+                                
                             }
+                            
                         }else {
+                            
                             self.captionLabel.isHidden = true
+                            
                         }
                         
                         if let userImageUrl = image.imgurl {
+                            
                             let url = NSURL(string: userImageUrl)
                             let frame = self.postedImage.frame
                             self.postedImage.sd_setImage(with: url! as URL)
@@ -88,10 +100,13 @@ class SingleViewController: UIViewController {
                         }
                         
                         if image.location == "" {
+                            
                             self.userName.text = user.username
                             self.stackView.isHidden = true
                             self.userName.isHidden = false
+                            
                         }else {
+                            
                             self.userNameL.text = user.username
                             let arrow = ">"
                             let addFontArrow = Font.italicLocation(text: arrow)
@@ -103,6 +118,7 @@ class SingleViewController: UIViewController {
                             self.location.attributedText = combination
                             self.userName.isHidden = true
                             self.stackView.isHidden = false
+                            
                         }
                         
                         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
@@ -111,22 +127,29 @@ class SingleViewController: UIViewController {
                         self.profileImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
                         
                         if let profileImage = image.pImage {
+                            
                             let url = NSURL(string: profileImage)
                             let frame = self.profileImage.frame
                             self.profileImage.sd_setImage(with: url! as URL)
                             self.profileImage.frame = frame
+                            
                         }
                         
                         DataService.imagesRef.child(self.imageUID!).child("likes").observe(.value, with: {likesSnapshot in
+                            
                             var count = 0
                             count  += Int(likesSnapshot.childrenCount)
                             if count == 0 {
+                                
                                 self.likes.attributedText = Font.NormalString(text: "Kelian NO PEOPLE LIKE", size: 14)
                                 
                             }else if count == 1 {
+                                
                                 DataService.imagesRef.child(self.imageUID!).child("likes").observe(.childAdded, with: {likesSnapshot in
                                     DataService.usersRef.child(likesSnapshot.key).observeSingleEvent(of: .value, with: {userSnapshot in
+                                        
                                         if let likedUser = User(snapshot: userSnapshot) {
+                                            
                                             let combination = NSMutableAttributedString()
                                             let boldString = Font.BoldString(text:  likedUser.username!, size: 14)
                                             let likeBy = Font.NormalString(text: "Liked By ", size: 14)
@@ -134,6 +157,7 @@ class SingleViewController: UIViewController {
                                             combination.append(boldString)
                                             self.likes.attributedText = combination
                                             self.likedUser = likedUser.username!
+                                            
                                         }
                                     })
                                 })
@@ -143,6 +167,7 @@ class SingleViewController: UIViewController {
                                 self.likes.attributedText = Font.NormalString(text: "\(count) likes", size: 14)
                                 
                             }else {
+                                
                                 let likesCount = String(count - 1)
                                 let combination = NSMutableAttributedString()
                                 let boldUsername = Font.BoldString(text: self.likedUser, size: 14)
@@ -154,6 +179,7 @@ class SingleViewController: UIViewController {
                                 combination.append(and)
                                 combination.append(countOthers)
                                 self.likes.attributedText = combination
+                                
                             }
                         })
                         
@@ -169,14 +195,14 @@ class SingleViewController: UIViewController {
                         self.userProfile = image.userUID
                     
                     }
-                
                 })
-                
             }
         })
         
         DataService.imagesRef.child(self.imageUID!).child("likes").observe(.value, with: { snapshot in
+            
             if snapshot.hasChild(User.currentUserUid()!) {
+                
                 let origImage = UIImage(named: "heart2")
                 let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                 self.likeButton2.setImage(tintedImage, for: .normal)
@@ -184,6 +210,7 @@ class SingleViewController: UIViewController {
                 self.likes2 = false
                 
             }else {
+                
                 let origImage = UIImage(named: "heart2")
                 let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                 self.likeButton2.setImage(tintedImage, for: .normal)
@@ -192,7 +219,6 @@ class SingleViewController: UIViewController {
                 
             }
         })
-        
         
         let origImage2 = UIImage(named: "share")
         let tintedImage2 = origImage2?.withRenderingMode(.alwaysTemplate)
@@ -221,6 +247,7 @@ class SingleViewController: UIViewController {
         nextViewController.userProfile = userProfile
         
         self.navigationController?.pushViewController(nextViewController, animated: true)
+        
     }
     
     @IBAction func likeButton(_ sender: Any) {
@@ -231,13 +258,10 @@ class SingleViewController: UIViewController {
             self.likes2 = false
             
         }else {
-            
             DataService.imagesRef.child((self.imageUID)!).child("likes").child(User.currentUserUid()!).removeValue()
             
             self.likes2 = true
         }
-        
-        
     }
 
     @IBAction func commentButton(_ sender: Any) {
@@ -247,7 +271,6 @@ class SingleViewController: UIViewController {
         nextViewController.imageID = self.imageUID
         
         self.navigationController?.pushViewController(nextViewController, animated: true)
+        
     }
-    
-
 }

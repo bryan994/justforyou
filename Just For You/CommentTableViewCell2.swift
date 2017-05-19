@@ -11,6 +11,7 @@ import UIKit
 class CommentTableViewCell2: UITableViewCell {
     
     @IBOutlet weak var imageView2: UIImageView!
+    
     @IBOutlet weak var label2: UILabel!
     
 }

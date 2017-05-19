@@ -91,9 +91,13 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
         if (error != nil) {
+            
             print(error.localizedDescription)
+            
         }else if (result.isCancelled) {
+            
             print("Facebook cancelled")
+            
         }else {
             
         let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
@@ -108,10 +112,15 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
                     var userDict: Dictionary<String, String> = [:]
 
                     if user.providerData[0].displayName != nil {
+                        
                         userDict["username"] = user.providerData[0].displayName
+                        
                     }
+                    
                     if user.providerData[0].email != nil {
+                        
                         userDict["email"] = user.providerData[0].email
+                        
                     }
 //                    if user.providerData[0].uid != "" {
 //                        let profileURL = "https://graph.facebook.com/\(user.providerData[0].uid)/picture?type=large"
@@ -144,12 +153,13 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
         guard
             let name = username.text,
             let email = emailAddress.text,
-            let password = password.text else{
+            let password = password.text else {
                 return
         }
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user, error) in
             if let user = user {
+                
                 // stores into user defaults under key userUID, the user's
                 UserDefaults.standard.set((user.uid), forKey: "userUID")
                 User.signIn(uid: user.uid)
@@ -159,6 +169,7 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
                 let currentUserRef = DataService.usersRef.child(user.uid)
                 let userDict = ["email": email, "username": name]
                 currentUserRef.setValue(userDict)
+                
             }else if self.emailAddress.text == "" || self.password.text == "" || self.username.text == "" {
                 
                 let alertController = UIAlertController(title: "Please don't leave the email or password empty", message: "Please enter your password again", preferredStyle: .alert)
@@ -188,7 +199,9 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         textField.resignFirstResponder()
         return true
+        
     }
 }

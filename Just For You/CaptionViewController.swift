@@ -15,12 +15,15 @@ import GooglePlaces
 class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, writeValueBackDelegate, CLLocationManagerDelegate{
     
     @IBOutlet weak var addLocation: DesignableTextField!
+    
     @IBOutlet var imageView: UIImageView!
+    
     @IBOutlet weak var captionTextView: UITextView!
+    
     var takenImage = UIImage()
+    
     var locationManager: CLLocationManager!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,24 +42,32 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
         if (textField == self.addLocation) {
+            
             self.performSegue(withIdentifier: "LocationSegue", sender: self)
 
             return false
         }
+        
         return true
 
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "LocationSegue" {
+            
             let locationController = segue.destination as! LocationViewController
             locationController.delegate = self
+            
         }
     }
     
     func writeValueBack(value: String) {
+        
         self.addLocation.text = value
+        
     }
     
     func segueToLocation() {
@@ -68,11 +79,13 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         locationManager.startUpdatingLocation()
         
         self.performSegue(withIdentifier: "LocationSegue", sender: self)
+        
     }
 
     func dismissKeyboard() {
         
         self.captionTextView.resignFirstResponder()
+        
     }
     
 
@@ -86,6 +99,7 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
             alertController.addAction(defaultAction)
             
             self.present(alertController, animated: true, completion: nil)
+            
         }else {
         
             let uniqueImageName = NSUUID().uuidString
@@ -93,12 +107,16 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
             
             let postImage = UIImageJPEGRepresentation((self.takenImage),0.5)!
             storageRef.put(postImage, metadata: nil, completion: { metadata, error in
+                
                 if error != nil {
+                    
                     print(error?.localizedDescription as Any)
                     return
+                    
                 }
                 
                 if let imageURL = metadata?.downloadURL()?.absoluteString, let user = User.currentUserUid(), let caption = self.captionTextView.text, let location = self.addLocation.text {
+                    
                     let value = ["imgurl":imageURL, "userUID":user, "created_at":NSDate().timeIntervalSince1970, "caption":caption, "location": location] as [String : Any]
                     let currentUser = DataService.imagesRef.childByAutoId()
                     currentUser.setValue(value)
@@ -107,9 +125,12 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
                     FIRDatabase.database().reference().child("users").child(user).child("images").updateChildValues([currentUser.key: true])
                     
                     SDImageCache.shared().store(self.takenImage, forKey: imageURL)
+                    
                 }
             })
+            
             self.navigationController?.popViewController(animated: true)
+            
         }
     }
 

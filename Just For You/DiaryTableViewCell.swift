@@ -19,25 +19,41 @@ class DiaryTableViewCell: UITableViewCell {
     var likes: Bool = true
 
     @IBOutlet weak var postImageView: UIImageView!
+    
     @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var numberOfLikes: UILabel!
+    
     @IBOutlet weak var captionLabel: UILabel!
+    
     @IBOutlet weak var likeButton: UIButton!
+    
     @IBOutlet weak var messageButton: UIButton!
+    
     @IBOutlet weak var commentButton: UIButton!
+    
     @IBOutlet weak var timeLabel: UILabel!
+    
     @IBOutlet weak var profileImage: UIImageView!
+    
     @IBOutlet weak var userName: UILabel!
+    
     var imageUID: Image?
+    
     @IBOutlet weak var userNameL: UILabel!
+    
     @IBOutlet weak var location: UILabel!
+    
     var check: Bool = true
 
     @IBOutlet weak var postImageWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var postImageHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var stackView: UIStackView!
     
     var delegate: CommentDelegate?
+    
     var delegate2: MessageDelegate?
     
     override func awakeFromNib() {
@@ -65,6 +81,7 @@ class DiaryTableViewCell: UITableViewCell {
             
             self.checkLiveFeed()
         })
+        
         tappedImage.addSubview(newImageView)
         tappedImage.bringSubview(toFront: newImageView)
         
@@ -95,13 +112,17 @@ class DiaryTableViewCell: UITableViewCell {
             
             DataService.usersRef.child((imageUID?.userUID)!).child("livefeed").observeSingleEvent(of: .value, with: { snapshot in
                 if snapshot.hasChildren() {
+                    
                     let keyArray = (snapshot.value as AnyObject).allKeys as! [String]
                     for key in keyArray {
+                        
                         DataService.usersRef.child((self.imageUID?.userUID)!).child("livefeed").child(key).observeSingleEvent(of: .value, with: {snapshot2 in
                             if let live = Livefeed(snapshot: snapshot2) {
+                                
                                 if live.imageID == self.imageUID?.uid && live.userID == User.currentUserUid() {
                                     DataService.usersRef.child((self.imageUID?.userUID)!).child("livefeed").child(key).removeValue()
                                     self.check = true
+                                    
                                 }
                             }
                         })
@@ -115,22 +136,25 @@ class DiaryTableViewCell: UITableViewCell {
     func checkLiveFeed() {
         
         if check && imageUID?.userUID != User.currentUserUid() {
+            
             let value = ["userID":User.currentUserUid()!, "created_at":NSDate().timeIntervalSince1970, "imageURL": (imageUID?.imgurl)!, "imageID": (self.imageUID?.uid)!] as [String : Any]
             let currentUser = DataService.usersRef.child((imageUID?.userUID)!).child("livefeed").childByAutoId()
             currentUser.setValue(value)
             self.check = false
+            
         }
-        
-
     }
 
     @IBAction func commentOnButtonPressed(_ sender: Any) {
+        
         self.delegate?.commentOnButtonPressed(cell: self)
         
     }
     
     @IBAction func messageOnButtonPressed(_ sender: Any) {
+        
         self.delegate2?.messageOnButtonPressed(cell:self)
+        
     }
     
 }

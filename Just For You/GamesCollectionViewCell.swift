@@ -11,4 +11,5 @@ import UIKit
 class GamesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var gamesImageView: UIImageView!
+    
 }

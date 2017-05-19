@@ -46,40 +46,57 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         DataService.imagesRef.child(imageUID).child("comment").observe(.childAdded, with: { commentSnapshot in
+            
             if let comment = Comment(snapshot: commentSnapshot) {
+                
                 DataService.usersRef.child(comment.userID!).observeSingleEvent(of: .value, with: { userSnapshot in
+                    
                     if let user = User(snapshot: userSnapshot) {
+                        
                         comment.profileImage = user.profileImage
                         comment.userName = user.username
                         self.listOfComment.append(comment)
                         self.listOfComment.sort {$0.time! < $1.time!}
                         self.tableView.reloadData()
+                        
                     }
                 })
             }
         })
         
         DataService.imagesRef.child(imageUID).observe(.value, with: { imageSnapshot in
+            
             if let image = Image(snapshot: imageSnapshot) {
+                
                 DataService.usersRef.child(image.userUID!).observeSingleEvent(of: .value, with: { userSnapshot in
+                    
                     if let user = User(snapshot: userSnapshot) {
+                        
                         image.pImage = user.profileImage
                         image.username = user.username
                         if self.userCaption.count == 0 {
+                            
                             self.userCaption.append(image)
+                            
                         }else {
+                            
                             print("Do nothing")
+                            
                         }
+                        
                         self.tableView.reloadData()
+                        
                     }
                 })
             }
         })
         
         DataService.imagesRef.child(self.imageID!).observeSingleEvent(of: .value, with: { imageSnapshot in
+            
             let userDict = imageSnapshot.value as! [String: Any]
             self.userUID = userDict["userUID"] as? String
             self.imageURL = userDict["imgurl"] as? String
+            
             
         })
         
@@ -159,14 +176,21 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 2
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if section == 0 {
+            
             return userCaption.count
+            
         }else {
+            
             return listOfComment.count
+            
         }
     }
     
@@ -179,10 +203,12 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
             let caption = userCaption[indexPath.row]
             
             if let profileImage = caption.pImage{
+                
                 let url = NSURL(string: profileImage)
                 let frame = cell2.imageView2.frame
                 cell2.imageView2.sd_setImage(with: url! as URL)
                 cell2.imageView2.frame = frame
+                
             }
             
             cell2.imageView2.layer.cornerRadius = cell2.imageView2.frame.size.width/2
@@ -206,10 +232,12 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
             let comment = listOfComment[indexPath.row]
             
             if let profileImage = comment.profileImage {
+                
                 let url = NSURL(string: profileImage)
                 let frame = cell.profileImage.frame
                 cell.profileImage.sd_setImage(with: url! as URL)
                 cell.profileImage.frame = frame
+                
             }
             
             cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
@@ -236,6 +264,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
                             cell.likeButton.setImage(tintedImage, for: .normal)
                             cell.likeButton.tintColor = .red
                             cell.checker = false
+                            
                         }else {
                             
                             let origImage = UIImage(named: "heart2")
@@ -244,19 +273,25 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
                             cell.likeButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
                             cell.checker = true
                         }
-                    
                     })
             DataService.imagesRef.child(self.imageID!).child("comment").child(comment.uid!).child("likes").observe(.value, with: { commentSnapshot2 in
                             var count = 0
                             count  += Int(commentSnapshot2.childrenCount)
+                
                             if count == 0 {
+                                
                                 cell.like.isHidden = true
+                                
                             }else if count == 1 {
+                                
                                 cell.like.text = "\(count) like"
                                 cell.like.isHidden = false
+                                
                             }else {
+                                
                                 cell.like.text = "\(count) likes"
                                 cell.like.isHidden = false
+                                
                         }
                     })
             
@@ -282,17 +317,19 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
             if editingStyle == .delete {
+                
                 DataService.imagesRef.child(self.imageID!).child("comment").observe(.childAdded, with: { imageSnapshot in
+                    
                     if let comment = Comment(snapshot: imageSnapshot) {
+                        
                         DataService.imagesRef.child(self.imageID!).child("comment").child(comment.uid!).removeValue()
                         self.listOfComment.remove(at: indexPath.row)
                         self.tableView.deleteRows(at: [indexPath], with: .fade)
                         self.tableView.reloadData()
+                        
                     }
                 })
-
             }
-        
     }
     
     func userProfileID(reco: UITapGestureRecognizer) {
@@ -303,6 +340,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         let user = userCaption[indexPath.row]
         
         if let userUID = user.userUID{
+            
             if userUID == User.currentUserUid() {
                 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle:nil)
@@ -330,6 +368,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         let user = listOfComment[indexPath.row]
         
         if let userID = user.userID{
+            
             if userID == User.currentUserUid() {
                 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle:nil)
@@ -348,5 +387,4 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
     }
-    
 }

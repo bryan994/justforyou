@@ -10,7 +10,9 @@ import UIKit
 import GooglePlaces
 
 protocol writeValueBackDelegate {
+    
     func writeValueBack(value: String)
+    
 }
 
 class LocationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
@@ -18,8 +20,11 @@ class LocationViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var placesClient: GMSPlacesClient!
+    
     var likeHoodList: GMSPlaceLikelihoodList?
+    
     var delegate: writeValueBackDelegate?
+    
     var placeName: String?
     
     override func viewDidLoad() {
@@ -33,34 +38,49 @@ class LocationViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func nearbyPlaces() {
+        
         placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            
             if let error = error {
+                
                 print("Pick Place error: \(error.localizedDescription)")
                 return
+                
             }
             
             if let placeLikelihoodList = placeLikelihoodList {
+                
                 self.likeHoodList = placeLikelihoodList
                 self.tableView.reloadData()
+                
             }
         })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if let likeHoodList = likeHoodList {
+            
             return likeHoodList.likelihoods.count
+            
         }
+        
         return 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
         let place = likeHoodList?.likelihoods[indexPath.row].place
         cell.textLabel?.text = place?.name
+        
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let place = likeHoodList?.likelihoods[indexPath.row].place
         
         self.placeName = place?.name
@@ -70,5 +90,4 @@ class LocationViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.popViewController(animated: true)
         
     }
-    
 }

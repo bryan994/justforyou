@@ -33,6 +33,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     // Set animation in the cell
     func animateCell(cell: UICollectionViewCell) {
+        
         let anim = CABasicAnimation(keyPath: "transform")
         anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         anim.duration = 0.8
@@ -41,6 +42,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         anim.isRemovedOnCompletion = true
         anim.toValue = NSValue(caTransform3D: CATransform3DMakeScale(1.2, 1.2, 1.0))
         cell.layer.add(anim, forKey: nil)
+        
     }
 
     // Perform animation then only segue
@@ -55,13 +57,17 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         animateCell(cell: cell)
         
         CATransaction.commit()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return array.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GamesCell", for: indexPath) as! GamesCollectionViewCell
         
         cell.gamesImageView.image = array[indexPath.row]
@@ -71,6 +77,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         cell.layer.shadowOpacity = 1.0
         
         return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -90,6 +97,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         }else if indexPath.row == 3 {
             
             durationOfCollectionView(segue: "Quiz2Segue", indexPath: indexPath as NSIndexPath)
+            
         }
     }
 }

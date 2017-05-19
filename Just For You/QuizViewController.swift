@@ -18,8 +18,11 @@ struct Question {
 class QuizViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
+    
     @IBOutlet weak var correctAnswerLabel: UILabel!
+    
     @IBOutlet weak var nextQuestion: UIButton!
+    
     @IBOutlet var Buttons: [UIButton]!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -31,6 +34,7 @@ class QuizViewController: UIViewController {
     var questions = [Question]()
     // How many question answered correctly?
     var answerCorrectly = 0
+    
     var correctAnswer = [String]()
         
     override func viewDidLoad() {
@@ -58,7 +62,9 @@ class QuizViewController: UIViewController {
     func buttonDesign() {
         
         for button in Buttons {
+            
             button.layer.cornerRadius = 5
+            
         }
     }
     
@@ -67,6 +73,7 @@ class QuizViewController: UIViewController {
         let gifManager = SwiftyGifManager(memoryLimit:20)
         let gif = UIImage(gifName: "giphy.gif")
         self.imageView.setGifImage(gif, manager: gifManager)
+        
     }
     
     func showImageView2() {
@@ -74,11 +81,13 @@ class QuizViewController: UIViewController {
         let gifManager = SwiftyGifManager(memoryLimit:20)
         let gif = UIImage(gifName: "200w_d.gif")
         self.imageView.setGifImage(gif, manager: gifManager)
+        
     }
 
     func setQuestion() {
         
         if questions.count > 0 {
+            
             questionNumber = 0
             questionLabel.text = questions[questionNumber].Question
             answerNumber = questions[questionNumber].Number
@@ -89,13 +98,17 @@ class QuizViewController: UIViewController {
                 Buttons[i].setTitle(questions[questionNumber].Answers[i], for: UIControlState.normal)
                 
             }
+            
             questions.remove(at: questionNumber)
+            
         }else {
+            
             let alertController = UIAlertController(title: "Congratulations!!!!", message: "Total correct: \(answerCorrectly)", preferredStyle: .alert)
 
             let dismissController = UIAlertAction(title: "OK", style: .cancel, handler: { action in self.navigationController?.popViewController(animated: true)})
             alertController.addAction(dismissController)
             self.present(alertController, animated: true, completion: nil)
+            
         }
     }
     
@@ -118,93 +131,125 @@ class QuizViewController: UIViewController {
     func disableAnswer() {
         
         for button in Buttons {
+            
             button.isEnabled = false
+            
         }
     }
     
     @IBAction func answer1(_ sender: Any) {
+        
         unhide()
         fade()
         
         let isAnswer = correctAnswer[answerNumber]
 
         if (answerNumber == 0) {
+            
             self.correctAnswerLabel.text = "You are definitely correct!!!"
             answerCorrectly = answerCorrectly + 1
             showImageView2()
             
             print("\(answerCorrectly)")
+            
         }else {
+            
             self.correctAnswerLabel.text = "ANSWER is \(isAnswer)"
             showImageView()
+            
         }
+        
         disableAnswer()
+        
     }
     
     @IBAction func answer2(_ sender: Any) {
+        
         unhide()
         fade()
         
         let isAnswer = correctAnswer[answerNumber]
 
         if (answerNumber == 1) {
+            
             self.correctAnswerLabel.text = "You are definitely correct!!!"
             answerCorrectly = answerCorrectly + 1
             showImageView2()
             
             print("\(answerCorrectly)")
+            
         }else {
+            
             self.correctAnswerLabel.text = "ANSWER is \(isAnswer)"
             showImageView()
+            
         }
+        
         disableAnswer()
+        
     }
     
     @IBAction func answer3(_ sender: Any) {
+        
         unhide()
         fade()
 
-        
         let isAnswer = correctAnswer[answerNumber]
 
         if (answerNumber == 2) {
+            
             self.correctAnswerLabel.text = "You are definitely correct!!! "
             answerCorrectly = answerCorrectly + 1
             showImageView2()
             
             print("\(answerCorrectly)")
+            
         }else {
+            
             self.correctAnswerLabel.text = "ANSWER is \(isAnswer)"
             showImageView()
+            
         }
+        
         disableAnswer()
+        
     }
     
     @IBAction func answer4(_ sender: Any) {
+        
         unhide()
         fade()
         
         let isAnswer = correctAnswer[answerNumber]
 
         if (answerNumber == 3) {
+            
             self.correctAnswerLabel.text = "You are definitely correct!!!"
             answerCorrectly = answerCorrectly + 1
             showImageView2()
 
             print("\(answerCorrectly)")
+            
         }else {
+            
             self.correctAnswerLabel.text = "ANSWER is \(isAnswer)"
             showImageView()
+            
         }
+        
         disableAnswer()
+        
     }
     
     @IBAction func nextQuestion(_ sender: Any) {
+        
         setQuestion()
         hide()
         
         for button in Buttons {
+            
             button.isEnabled = true
+            
         }
     }
     
@@ -213,6 +258,7 @@ class QuizViewController: UIViewController {
         self.imageView.fadeIn(completion: {
             (finished: Bool) -> Void in
             self.imageView.fadeOut()
+            
         })
     }
 }
