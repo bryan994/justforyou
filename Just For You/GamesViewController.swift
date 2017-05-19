@@ -68,7 +68,8 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         cell.layer.shadowColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
         cell.layer.shadowRadius = 10
-        cell.layer.shadowOpacity = 2.0
+        cell.layer.shadowOpacity = 1.0
+        
         return cell
     }
     
