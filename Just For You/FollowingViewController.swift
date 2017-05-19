@@ -11,9 +11,13 @@ import UIKit
 class FollowingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 
     @IBOutlet weak var tableView: UITableView!
+    
     var userProfile: String?
+    
     var listOfUser = [User]()
+    
     var filteredListOfUser = [User]()
+    
     var searchController = UISearchController()
     
     override func viewDidLoad() {
@@ -28,6 +32,7 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationItem.title = "Following"
         
         self.searchController = ({
+            
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
@@ -35,6 +40,7 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
             self.tableView.tableHeaderView = controller.searchBar
             
             return controller
+            
         })()
 
         guard let currentUserID = self.userProfile else {
@@ -42,21 +48,29 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         DataService.usersRef.child(currentUserID).child("following").observeSingleEvent(of: .value, with: { snapshot in
+            
             if snapshot.hasChildren() {
+                
                 let keyArray = (snapshot.value as AnyObject).allKeys as! [String]
                 for key in keyArray{
+                    
                     DataService.usersRef.child(key).observeSingleEvent(of: .value, with: { userSnapshot in
+                        
                         if let users = User(snapshot: userSnapshot) {
+                            
                             self.listOfUser.append(users)
                             
                             for i in self.listOfUser {
+                                
                                 if i.uid == User.currentUserUid() {
+                                    
                                     i.myself = true
+                                    
                                 }
                             }
                             
-                            
                             self.tableView.reloadData()
+                            
                         }
                     })
                 }
@@ -73,6 +87,7 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
             $0.username!.lowercased().range(of: searchController.searchBar.text!.lowercased()) != nil
             
         }
+        
         filteredListOfUser = array
         
         self.tableView.reloadData()
@@ -81,10 +96,14 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if (self.searchController.isActive) {
+            
             return self.filteredListOfUser.count
         }
+            
         else {
+            
             return self.listOfUser.count
+            
         }
     }
     
@@ -109,6 +128,7 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
             let frame = cell.profileImage2.frame
             cell.profileImage2.sd_setImage(with: url! as URL)
             cell.profileImage2.frame = frame
+            
         }
         
         cell.profileImage2.layer.cornerRadius = cell.profileImage2.frame.size.width/2
@@ -122,21 +142,27 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
         DataService.usersRef.child(User.currentUserUid()!).child("following").observe(.value, with: { userSnapshot in
             
             if user.myself {
+                
                 cell.following.isHidden = true
+                
             }else if userSnapshot.hasChild(user.uid!) {
+                
                 cell.following.tintColor = UIColor.white
                 cell.following.setTitle("Following", for: UIControlState.normal)
                 cell.following.backgroundColor = UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
                 cell.following.layer.cornerRadius = 5
                 cell.following.layer.borderWidth = 0.5
                 cell.following2 = false
+                
             }else {
+                
                 cell.following.tintColor = UIColor.black
                 cell.following.setTitle("Follow", for: UIControlState.normal)
                 cell.following.backgroundColor = UIColor.clear
                 cell.following.layer.cornerRadius = 5
                 cell.following.layer.borderWidth = 0.5
                 cell.following2 = true
+                
             }
         })
         
@@ -147,6 +173,7 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.userID = user
         return cell
+        
     }
     
     func userProfileSegue(recognizer: UIGestureRecognizer){
@@ -157,6 +184,7 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
         let user = listOfUser[indexPath.row]
         
         if let userID = user.uid{
+            
             if userID == User.currentUserUid() {
                 
                 self.userProfile = userID
@@ -176,12 +204,15 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "UserSegue" {
+            
             let nextScene = segue.destination as! UserProfileViewController
             nextScene.userProfile = self.userProfile
             
         }else if segue.identifier == "ProfileSegue" {
+            
             let nextScene = segue.destination as! ProfileViewController
             nextScene.userProfile = self.userProfile
+            
         }
     }
 }

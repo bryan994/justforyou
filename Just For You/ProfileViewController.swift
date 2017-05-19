@@ -21,36 +21,50 @@ protocol ChangeProfileImage{
 class ProfileViewController: UIViewController, FusumaDelegate{
     
     @IBOutlet var imageView: UIImageView!
+    
     @IBOutlet var videoImageView: UIImageView!
-    @IBOutlet var letterImageView: UIImageView!    
+    
+    @IBOutlet var letterImageView: UIImageView!
+    
     @IBOutlet var scrollView: UIScrollView!
+    
     @IBOutlet weak var usernameLabel: UILabel!
+    
     @IBOutlet weak var informationLabel: UILabel!
     
     @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var postsLabel: UILabel!
+    
     @IBOutlet weak var followersLabel: UILabel!
+    
     @IBOutlet weak var followingLabel: UILabel!
     
     @IBOutlet weak var postsStackView: UIStackView!
+    
     @IBOutlet weak var followersStackView: UIStackView!
+    
     @IBOutlet weak var followingStackView: UIStackView!
     
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
     var buttonImages = [UIImageView]()
+    
     var profileImage: UIImage?
+    
     var facebookImage: UIImage?
     
     @IBOutlet weak var tableContainer: UIView!
+    
     @IBOutlet weak var collectionContainer: UIView!
     
     @IBOutlet weak var segmentButton: UISegmentedControl!
+    
     var userProfile =  User.currentUserUid()
     
     var delegate: ChangeProfileImage?
-    var select: Bool = true
     
+    var select: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,11 +82,15 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         retrieveUserInformation()
         
         if User.currentUserUid() == "cVCOcp4lbtZKJlzecrruZfrTkqC2" {
+            
             self.videoImageView.isHidden = false
             self.letterImageView.isHidden = false
+            
         }else {
+            
             self.videoImageView.isHidden = true
             self.letterImageView.isHidden = true
+            
         }
         
         let following: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(followingTap))
@@ -84,12 +102,13 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         followersStackView.isUserInteractionEnabled = true
         
         if select {
+            
             self.contentViewHeight.constant = self.collectionContainer.bounds.size.height + self.containerView.bounds.size.height
+            
         }else {
+            
             self.contentViewHeight.constant = self.tableContainer.bounds.size.height + self.containerView.bounds.size.height
-        }  
-
-        
+        }
     }
     
     func followingTap() {
@@ -101,18 +120,26 @@ class ProfileViewController: UIViewController, FusumaDelegate{
     func followersTap() {
         
         self.performSegue(withIdentifier: "FollowerSegue", sender: self)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "PostedSegue" {
+            
             let nextScene = segue.destination as! PostedViewController
             nextScene.userProfile = self.userProfile
+            
         }else if segue.identifier == "FollowerSegue" {
+            
             let nextScene = segue.destination as! FollowerViewController
             nextScene.userProfile = self.userProfile
+            
         }else if segue.identifier == "FollowingSegue" {
+            
             let nextScene = segue.destination as! FollowingViewController
             nextScene.userProfile = self.userProfile
+            
         }
     }
     
@@ -122,20 +149,26 @@ class ProfileViewController: UIViewController, FusumaDelegate{
             return
         }
         DataService.usersRef.child(currentUserID).observeSingleEvent(of: .value, with: { userSnapshot in
+            
             if let user = User(snapshot: userSnapshot) {
-                if user.profileImage != ""{
+                
+                if user.profileImage != "" {
+                    
                     let url = NSURL(string: user.profileImage!)
                     self.imageView.sd_setImage(with: url! as URL)
                     self.usernameLabel.text = user.username
                     self.navigationItem.title = user.username
-                }else{
+                    
+                }else {
+                    
                     self.imageView.image = UIImage(named: "yin.jpg")
+                    
                 }
+                
                 self.usernameLabel.text = user.username
                 self.navigationItem.title = user.username
                 
             }
-            
         })
         
         DataService.usersRef.child(currentUserID).child("images").observe(.value, with: { userSnapshot in
@@ -165,18 +198,21 @@ class ProfileViewController: UIViewController, FusumaDelegate{
     @IBAction func segmentButtonAction(_ sender: Any) {
         
         if (sender as AnyObject).selectedSegmentIndex == 0 {
+            
             UIView.animate(withDuration: 0.5, animations: {
                 self.collectionContainer.alpha = 1
                 self.tableContainer.alpha = 0
             })
+            
             self.select = false
-
             
         } else {
+            
             UIView.animate(withDuration: 0.5, animations: {
                 self.collectionContainer.alpha = 0
                 self.tableContainer.alpha = 1
             })
+            
             self.select = true
 
         }
@@ -200,9 +236,12 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         
         let selectedImage = UIImageJPEGRepresentation((self.imageView.image)!, 0.5)!
         storageRef.put(selectedImage, metadata: nil, completion: { (metadata, error) in
+            
             if error != nil {
+                
                 print(error!)
                 return
+                
             }
             
             if let imageURL = metadata?.downloadURL()?.absoluteString, let user = User.currentUserUid() {
@@ -221,12 +260,14 @@ class ProfileViewController: UIViewController, FusumaDelegate{
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
         
         print("Called just after a video has been selected.")
+        
     }
     
     // When camera roll is not authorized, this method is called.
     func fusumaCameraRollUnauthorized() {
         
         print("Camera roll unauthorized")
+        
     }
     
     func fusumaClosed() {
@@ -237,6 +278,7 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         
         self.letterImageView.isUserInteractionEnabled = true
         self.videoImageView.isUserInteractionEnabled = true
+        
     }
     
     func imageClicked(reco: UITapGestureRecognizer) {
@@ -246,18 +288,26 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         let alertController = UIAlertController(title: "Verification", message: "Please enter the verification code:", preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            
             if let field = alertController.textFields?[0] {
+    
                 if field.text == "123456"{
+                    
                     if imageViewTapped.tag == 1 {
-                    self.performSegue(withIdentifier: "LetterSegue", sender: self)
+                        
+                        self.performSegue(withIdentifier: "LetterSegue", sender: self)
                         
                     }else if imageViewTapped.tag == 2 {
-                    self.performSegue(withIdentifier: "VideoSegue", sender: self)
+                        
+                        self.performSegue(withIdentifier: "VideoSegue", sender: self)
                     }
+                    
                 }else {
+                    
                     self.letterImageView.isUserInteractionEnabled = false
                     self.videoImageView.isUserInteractionEnabled = false
                     Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ProfileViewController.enableButton), userInfo: nil, repeats: false)
+                    
                 }
             }
         }
@@ -282,6 +332,7 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         imageView.backgroundColor = .clear
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
+        
     }
     
     @IBAction func logoutOnButtonPressed(_ sender: Any) {
@@ -292,6 +343,7 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         loginManager.logOut()
         
         goBackToLogin()
+        
     }
     
     func goBackToLogin() {
@@ -300,6 +352,6 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let LogInViewController = storyboard.instantiateInitialViewController()
         appDelegateTemp.window?!.rootViewController = LogInViewController
+        
     }
-
 }

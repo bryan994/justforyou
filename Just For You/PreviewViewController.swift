@@ -14,8 +14,11 @@ class PreviewViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     
     var timer = Timer()
+    
     var counter = 0
+    
     var counter2 = 0
+    
     var locationManager: CLLocationManager!
 
     

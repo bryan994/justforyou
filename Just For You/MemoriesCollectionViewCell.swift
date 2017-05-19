@@ -12,4 +12,5 @@ import UIKit
 class MemoriesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    
 }

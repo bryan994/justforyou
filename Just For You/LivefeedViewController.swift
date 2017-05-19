@@ -13,6 +13,7 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var listOfLivefeed = [Livefeed]()
+    
     var refresher = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -32,28 +33,38 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         DataService.usersRef.child(currentUserID).child("livefeed").observe(.childAdded, with: { liveSnapshot in
+            
             if let livefeed = Livefeed(snapshot: liveSnapshot) {
+                
                 DataService.usersRef.child(livefeed.userID!).observeSingleEvent(of: .value, with: { userSnapshot in
+                    
                     if let user = User(snapshot: userSnapshot) {
+                        
                         livefeed.userName = user.username
                         livefeed.profileImage = user.profileImage
                         self.listOfLivefeed.append(livefeed)
                         self.listOfLivefeed.sort {$0.time! > $1.time!}
                         
                         self.tableView.reloadData()
-        
+                        
                     }
                 })
             }
         })
         
         DataService.usersRef.child(currentUserID).child("livefeed").observe(.value, with: { liveSnapshot in
+            
             if liveSnapshot.hasChildren() {
+                
                 let keyArray = (liveSnapshot.value as AnyObject).allKeys as! [String]
                     for key in keyArray {
+                        
                         DataService.usersRef.child(currentUserID).child("livefeed").child(key).observe(.childRemoved, with: { liveSnapshot2 in
+                            
                             for (index,i) in self.listOfLivefeed.enumerated() {
+                                
                                 if i.uid == key {
+                                    
                                     self.listOfLivefeed.remove(at: index)
                                     self.tableView.reloadData()
                                     
@@ -67,12 +78,15 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         return "Activity"
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.listOfLivefeed.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +96,7 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
         let livefeed = listOfLivefeed[indexPath.row]
         
         if livefeed.imageURL == "" {
+            
             let url = NSURL(string: livefeed.profileImage!)
             let frame = cell.userImage.frame
             cell.userImage.sd_setImage(with: url! as URL)
@@ -105,6 +120,7 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.followButton.layer.cornerRadius = 5
                     cell.followButton.layer.borderWidth = 0.5
                     cell.followed = false
+                    
                 }else {
                     
                     cell.followButton.tintColor = UIColor.black
@@ -120,6 +136,7 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
             cell.followButton.isHidden = false
             
         }else if livefeed.identifier == "likeComment"  {
+            
             let url = NSURL(string: livefeed.profileImage!)
             let frame = cell.userImage.frame
             cell.userImage.sd_setImage(with: url! as URL)
@@ -212,11 +229,13 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
         let live = listOfLivefeed[indexPath.row]
         
         if let imageID = live.imageID{
+            
             let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SingleViewController") as! SingleViewController
             nextViewController.imageUID = imageID
             
             self.navigationController?.pushViewController(nextViewController, animated: true)
+            
         }
     }
     

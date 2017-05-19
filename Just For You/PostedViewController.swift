@@ -11,10 +11,13 @@ import UIKit
 class PostedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var listOfImage = [Image]()
+    
     var imageUID: String?
+    
     var userProfile: String?
         
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,25 +37,30 @@ class PostedViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
 
         DataService.usersRef.child(currentUserID).child("images").observe(.childAdded, with: {userSnapshot in
+            
             DataService.imagesRef.child(userSnapshot.key).observeSingleEvent(of: .value, with: {imagesSnpashot in
+                
                 if let image = Image(snapshot: imagesSnpashot) {
+                    
                     self.listOfImage.append(image)
                     self.listOfImage.sort {$0.time! > $1.time!}
                     self.collectionView.reloadData()
+                    
                 }
             })
-            
         })
-
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return listOfImage.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostedCell", for: indexPath) as! PostedCollectionViewCell
         
         let image = listOfImage[indexPath.row]
@@ -66,12 +74,16 @@ class PostedViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
 
         return cell
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "SingleSegue" {
+            
             let nextScene =  segue.destination as! SingleViewController
             nextScene.imageUID = self.imageUID
+            
         }
     }
     
@@ -83,5 +95,4 @@ class PostedViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.performSegue(withIdentifier: "SingleSegue", sender: self)
         
     }
-
 }

@@ -18,8 +18,11 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet var tableView: UITableView!
     
     let screenSize: CGRect = UIScreen.main.bounds
+    
     var listOfImage = [Image]()
+    
     var likedUser = String()
+    
     var imageID: String?
 
     override func viewDidLoad() {
@@ -104,8 +107,11 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.captionLabel.attributedText = combination
                 cell.captionLabel.isHidden = false
             }
+            
         }else {
+            
             cell.captionLabel.isHidden = true
+            
         }
         
         if let userImageUrl = user.imgurl {
@@ -118,10 +124,13 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if user.location == "" {
+            
             cell.userName.text = user.username
             cell.stackView.isHidden = true
             cell.userName.isHidden = false
+            
         }else {
+            
             cell.userNameL.text = user.username
             let arrow = ">"
             let addFontArrow = Font.italicLocation(text: arrow)
@@ -141,23 +150,30 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.profileImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
        
         if let profileImage = user.pImage {
+            
                 let url = NSURL(string: profileImage)
                 let frame = cell.profileImage.frame
                 cell.profileImage.sd_setImage(with: url! as URL)
                 cell.profileImage.frame = frame
+            
         }
         
         if user.pImage != "" {
+            
             let url = NSURL(string: user.pImage!)
             let frame = cell.profileImage.frame
             cell.profileImage.sd_setImage(with: url! as URL)
             cell.profileImage.frame = frame
+            
         }else {
+            
             cell.profileImage.image = UIImage(named: "yin.jpg")
+            
         }
         
         DataService.imagesRef.child(user.uid!).child("likes").observe(.value, with: { snapshot in
             if snapshot.hasChild(User.currentUserUid()!) {
+                
                 let origImage = UIImage(named: "heart2")
                 let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                 cell.likeButton.setImage(tintedImage, for: .normal)
@@ -165,7 +181,8 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.likes = false
                 cell.check = false
                 
-            }else{
+            }else {
+                
                 let origImage = UIImage(named: "heart2")
                 let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                 cell.likeButton.setImage(tintedImage, for: .normal)
@@ -178,10 +195,12 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         DataService.imagesRef.child(user.uid!).child("likes").observe(.value, with: {likesSnapshot in
             var count = 0
                 count  += Int(likesSnapshot.childrenCount)
-            if count == 0{
+            if count == 0 {
+                
                 cell.numberOfLikes.attributedText = Font.NormalString(text: "Kelian NO PEOPLE LIKE",size: 14)
  
-            }else if count == 1{
+            }else if count == 1 {
+                
                 DataService.imagesRef.child(user.uid!).child("likes").observe(.childAdded, with: {likesSnapshot in
                     DataService.usersRef.child(likesSnapshot.key).observeSingleEvent(of: .value, with: {userSnapshot in
                         if let likedUser = User(snapshot: userSnapshot){
@@ -196,11 +215,12 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     })
                 })
                 
-            }else if count == 2{
+            }else if count == 2 {
                 
                 cell.numberOfLikes.attributedText = Font.NormalString(text: "\(count) likes", size: 14)
                 
-            }else{
+            }else {
+                
                 let likesCount = String(count - 1)
                 let combination = NSMutableAttributedString()
                 let boldUsername = Font.BoldString(text: "\(self.likedUser) ", size: 14)
@@ -257,6 +277,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let user = listOfImage[indexPath.section]
         
         if let userProfile = user.userUID {
+            
             if userProfile == User.currentUserUid() {
                 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle:nil)

@@ -9,10 +9,13 @@
 import UIKit
 
 class Posted2ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CommentDelegate2 {
+    
     @IBOutlet weak var tableView: UITableView!
     
     var listOfPost = [Image]()
+    
     var likedUser = String()
+    
     let screenSize: CGRect = UIScreen.main.bounds
 
     override func viewDidLoad() {
@@ -27,18 +30,25 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         DataService.imagesRef.observe(.childAdded, with: { imageSnapshot in
+            
             if let image = Image(snapshot: imageSnapshot) {
+                
                 DataService.usersRef.child(image.userUID!).observeSingleEvent(of:.value, with: { userSnapshot in
+                    
                     if let user = User(snapshot: userSnapshot) {
+                        
                         image.username = user.username
                         image.pImage = user.profileImage
                         
                         if image.userUID == User.currentUserUid() {
+                            
                             self.listOfPost.append(image)
                             self.listOfPost.sort {$0.time! > $1.time!}
+                            
                         }
                         
                         self.tableView.reloadData()
+                        
                     }
                 })
             }
@@ -50,6 +60,7 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             return
         }
+        
         let user = listOfPost[indexPath.section]
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
@@ -57,14 +68,19 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         nextViewController.imageID = user.uid
             
         self.navigationController?.pushViewController(nextViewController, animated: true)
+        
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return self.listOfPost.count
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 1
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +90,9 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         let user = listOfPost[indexPath.section]
         
         if user.caption != "" {
+            
             if let username = user.username, let caption = user.caption{
+                
                 let combination = NSMutableAttributedString()
                 let transformCaption = Font.NormalString(text: caption, size: 14)
                 let boldUsername = Font.BoldString(text: "\(username) ", size: 14)
@@ -82,9 +100,13 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
                 combination.append(transformCaption)
                 cell.captionLabel.attributedText = combination
                 cell.captionLabel.isHidden = false
+                
             }
+            
         }else {
+            
             cell.captionLabel.isHidden = true
+            
         }
         
         if let userImageUrl = user.imgurl {
@@ -97,10 +119,13 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         if user.location == "" {
+            
             cell.userName.text = user.username
             cell.stackView.isHidden = true
             cell.userName.isHidden = false
+            
         }else {
+            
             cell.userNameLocation.text = user.username
             let arrow = ">"
             let addFontArrow = Font.italicLocation(text: arrow)
@@ -112,6 +137,7 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.location.attributedText = combination
             cell.userName.isHidden = true
             cell.stackView.isHidden = false
+            
         }
         
         cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.size.width/2
@@ -120,16 +146,18 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.profileImageView.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
         
         if let profileImage = user.pImage {
+            
             let url = NSURL(string: profileImage)
             let frame = cell.profileImageView.frame
             cell.profileImageView.sd_setImage(with: url! as URL)
             cell.profileImageView.frame = frame
+            
         }
         
-        
-        
         DataService.imagesRef.child(user.uid!).child("likes").observe(.value, with: { snapshot in
+            
             if snapshot.hasChild(User.currentUserUid()!) {
+                
                 let origImage = UIImage(named: "heart2")
                 let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                 cell.likeButton.setImage(tintedImage, for: .normal)
@@ -138,28 +166,37 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.check = false
                 
             }else {
+                
                 let origImage = UIImage(named: "heart2")
                 let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
                 cell.likeButton.setImage(tintedImage, for: .normal)
                 cell.likeButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
                 cell.likes = true
                 cell.check = true
+                
             }
         })
         
         DataService.imagesRef.child(user.uid!).child("likes").observe(.value, with: {likesSnapshot in
+            
             var count = 0
             count  += Int(likesSnapshot.childrenCount)
             if count == 0 {
+                
                 cell.numberOfLikes.attributedText = Font.NormalString(text: "Kelian NO PEOPLE LIKE", size: 14)
                 
             }else if count == 1 {
+                
                 DataService.imagesRef.child(user.uid!).child("likes").observe(.childAdded, with: {likesSnapshot in
+                    
                     DataService.usersRef.child(likesSnapshot.key).observeSingleEvent(of: .value, with: {userSnapshot in
+                        
                         if let likedUser = User(snapshot: userSnapshot) {
+                            
                             cell.numberOfLikes.font = UIFont(name: "Baskerville-Italic", size: 16)
                             cell.numberOfLikes.text = "Liked By \(String(describing: likedUser.username!))"
                             self.likedUser = likedUser.username!
+                            
                         }
                     })
                 })
@@ -169,6 +206,7 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.numberOfLikes.attributedText = Font.NormalString(text: "\(count) likes", size: 14)
                 
             }else {
+                
                 let likesCount = String(count - 1)
                 let combination = NSMutableAttributedString()
                 let boldUsername = Font.BoldString(text: self.likedUser, size: 14)
@@ -180,6 +218,7 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
                 combination.append(and)
                 combination.append(countOthers)
                 cell.numberOfLikes.attributedText = combination
+                
             }
         })
         
@@ -208,5 +247,6 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.imageUID = user
         cell.delegate = self
         return cell
+        
     }
 }

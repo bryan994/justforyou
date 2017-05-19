@@ -16,6 +16,7 @@ class MemoriesViewController: UIViewController, UICollectionViewDelegate, UIColl
     var image: [UIImage] = [UIImage(named: "image1.jpg")!,UIImage(named: "image2.jpg")!,UIImage(named: "image3.jpg")!,UIImage(named: "image4.jpg")!]
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +36,7 @@ class MemoriesViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return array.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,5 +52,6 @@ class MemoriesViewController: UIViewController, UICollectionViewDelegate, UIColl
 //        cell.layer.cornerRadius = 8
         
         return cell
+        
     }
 }
