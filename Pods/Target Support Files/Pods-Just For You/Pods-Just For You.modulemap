@@ -1,0 +1,6 @@
+framework module Pods_Just_For_You {
+  umbrella header "Pods-Just For You-umbrella.h"
+
+  export *
+  module * { export * }
+}

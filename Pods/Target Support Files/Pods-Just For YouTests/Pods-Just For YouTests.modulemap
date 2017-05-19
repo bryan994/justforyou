@@ -1,0 +1,6 @@
+framework module Pods_Just_For_YouTests {
+  umbrella header "Pods-Just For YouTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

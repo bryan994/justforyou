@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>720684355221-kuqrdccjcho8s0j6al5rnhq59cu4vv4o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.720684355221-kuqrdccjcho8s0j6al5rnhq59cu4vv4o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBF8rqHsXOJI4Gg56XLGZz2AqCAFyB4CfM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>720684355221</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Blww.Just-For-You</string>
+	<key>PROJECT_ID</key>
+	<string>just-for-you-9b681</string>
+	<key>STORAGE_BUCKET</key>
+	<string>just-for-you-9b681.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:720684355221:ios:c24491d7c43ae45e</string>
+	<key>DATABASE_URL</key>
+	<string>https://just-for-you-9b681.firebaseio.com</string>
+</dict>
+</plist>
