@@ -51,7 +51,7 @@ class QuizViewController: UIViewController {
         Question(Question: "How you feel?", Answers: ["I'm Fine", "I'm okay", "I'm alright", "I'm good"], Number: 1),
         Question(Question: "Are you Okay?", Answers: ["I'm Fine", "I'm okay", "I'm alright", "I'm good"], Number: 0)]
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationItem.hidesBackButton = true
         
         hide()
         setQuestion()

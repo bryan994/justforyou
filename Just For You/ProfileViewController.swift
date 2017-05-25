@@ -74,9 +74,12 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         self.imageView.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(changePicture(reco:))))
 
         buttonImages = [letterImageView, videoImageView]
+        
         for imageView in buttonImages {
+            
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageClicked(reco:))))
+            
         }
         
         retrieveUserInformation()
@@ -322,16 +325,6 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        imageView.layer.cornerRadius = imageView.frame.size.width/2
-        imageView.clipsToBounds = true
-        imageView.backgroundColor = .clear
-        imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
         
     }
     

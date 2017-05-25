@@ -231,14 +231,5 @@ class UserProfileViewController: UIViewController{
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        
-        imageView.layer.cornerRadius = imageView.frame.size.width/2
-        imageView.clipsToBounds = true
-        imageView.backgroundColor = .clear
-        imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
-        
-    }
 }
 

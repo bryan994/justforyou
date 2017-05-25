@@ -7,15 +7,21 @@
 //
 
 import UIKit
+
 protocol CommentDelegate: class{
+    
     func commentOnButtonPressed(cell: DiaryTableViewCell)
+    
 }
 
 protocol MessageDelegate: class{
+    
     func messageOnButtonPressed(cell: DiaryTableViewCell)
+    
 }
 
 class DiaryTableViewCell: UITableViewCell {
+    
     var likes: Bool = true
 
     @IBOutlet weak var postImageView: UIImageView!
@@ -55,7 +61,7 @@ class DiaryTableViewCell: UITableViewCell {
     var delegate: CommentDelegate?
     
     var delegate2: MessageDelegate?
-    
+                
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -63,9 +69,9 @@ class DiaryTableViewCell: UITableViewCell {
         tapGesture.numberOfTapsRequired = 2
         postImageView.addGestureRecognizer(tapGesture)
         postImageView.isUserInteractionEnabled = true
-        
-    }
     
+    }
+
     func imagePosted(recognizer: UIGestureRecognizer) {
         
         let tappedImage = recognizer.view as! UIImageView

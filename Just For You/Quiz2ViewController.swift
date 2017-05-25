@@ -50,7 +50,7 @@ class Quiz2ViewController: UIViewController {
         setQuestion()
         buttonDesign()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationItem.hidesBackButton = true
         
     }
     
@@ -253,6 +253,7 @@ class Quiz2ViewController: UIViewController {
     func fade() { 
         
         self.imageView.fadeIn(completion: {
+            
             (finished: Bool) -> Void in
             self.imageView.fadeOut()
             
