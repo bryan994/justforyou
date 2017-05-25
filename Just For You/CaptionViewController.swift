@@ -129,7 +129,7 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
                 }
             })
             
-            self.navigationController?.popViewController(animated: true)
+            self.performSegue(withIdentifier: "HomeSegue", sender: self)
             
         }
     }

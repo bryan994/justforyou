@@ -30,7 +30,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOG-Ah-SjU">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HHW-RP-4YT">
+                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HHW-RP-4YT" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="20" width="90" height="90"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="90" id="J2b-X9-adT"/>
@@ -649,7 +649,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7x-dw-CX7">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yin" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-wg-O0R">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yin" translatesAutoresizingMaskIntoConstraints="NO" id="7ZY-wg-O0R" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="5" y="5" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Zzd-Ab-EET"/>
@@ -1005,7 +1005,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYv-Kr-4rd">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vd3-ap-ci1">
+                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vd3-ap-ci1" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="20" width="90" height="90"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="90" id="FKO-dM-39b"/>
@@ -1212,11 +1212,11 @@
         <image name="yin" width="740" height="758"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1k8-E7-5lu"/>
         <segue reference="ATa-ZH-QrN"/>
-        <segue reference="3Ri-Z9-V7F"/>
+        <segue reference="UxP-tg-tWT"/>
         <segue reference="3Pi-PY-JWv"/>
         <segue reference="Dty-Bp-der"/>
         <segue reference="uEe-fD-Q7K"/>
+        <segue reference="3Ri-Z9-V7F"/>
     </inferredMetricsTieBreakers>
 </document>

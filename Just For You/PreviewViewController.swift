@@ -48,8 +48,7 @@ class PreviewViewController: UIViewController, CLLocationManagerDelegate {
         self.label.isUserInteractionEnabled = true
 
     }
-    
-    
+     
     func tapGesture() {
         
         self.label.text = array[self.counter2]

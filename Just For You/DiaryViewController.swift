@@ -13,18 +13,16 @@ import FirebaseStorage
 import GooglePlaces
 
 
-class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommentDelegate, MessageDelegate{
+class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommentDelegate, MessageDelegate {
 
     @IBOutlet var tableView: UITableView!
     
     let screenSize: CGRect = UIScreen.main.bounds
     
     var listOfImage = [Image]()
-    
-    var likedUser = String()
-    
+        
     var imageID: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,25 +37,24 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.title = "Yinstagram"
     
         DataService.imagesRef.observe(.childAdded, with: { imageSnapshot in
+            
             if let image = Image(snapshot: imageSnapshot){
+                
                 DataService.usersRef.child(image.userUID!).observeSingleEvent(of:.value, with: { userSnapshot in
+                    
                     if let user = User(snapshot: userSnapshot){
+                        
                         image.username = user.username
                         image.pImage = user.profileImage
                         self.listOfImage.append(image)
                         self.listOfImage.sort {$0.time! > $1.time!}
                         
                         self.tableView.reloadData()
+                        
                     }
                 })
             }
         })
-        
-        DataService.rootRef.keepSynced(true)
-        DataService.imagesRef.keepSynced(true)
-        DataService.usersRef.keepSynced(true)
-        
-
     }
     
     @IBAction func camera(_ sender: Any) {
@@ -80,6 +77,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             return
         }
+        
         let user = listOfImage[indexPath.section]
         self.imageID = user.uid
         
@@ -143,11 +141,6 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.userName.isHidden = true
             cell.stackView.isHidden = false
         }
-        
-        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
-        cell.profileImage.clipsToBounds = true
-        cell.profileImage.layer.borderWidth = 1
-        cell.profileImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
        
         if let profileImage = user.pImage {
             
@@ -193,47 +186,27 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
         
         DataService.imagesRef.child(user.uid!).child("likes").observe(.value, with: {likesSnapshot in
+            
             var count = 0
-                count  += Int(likesSnapshot.childrenCount)
+            count += Int(likesSnapshot.childrenCount)
+            
             if count == 0 {
                 
-                cell.numberOfLikes.attributedText = Font.NormalString(text: "Kelian NO PEOPLE LIKE",size: 14)
- 
+                cell.numberOfLikes.attributedText = Font.NormalString(text: "Kelian no people like ", size: 14)
+
             }else if count == 1 {
                 
-                DataService.imagesRef.child(user.uid!).child("likes").observe(.childAdded, with: {likesSnapshot in
-                    DataService.usersRef.child(likesSnapshot.key).observeSingleEvent(of: .value, with: {userSnapshot in
-                        if let likedUser = User(snapshot: userSnapshot){
-                            let combination = NSMutableAttributedString()
-                            let boldString = Font.BoldString(text:  likedUser.username!, size: 14)
-                            let likeBy = Font.NormalString(text: "Liked By ", size: 14)
-                            combination.append(likeBy)
-                            combination.append(boldString)
-                            cell.numberOfLikes.attributedText = combination
-                            self.likedUser = likedUser.username!
-                        }
-                    })
-                })
-                
-            }else if count == 2 {
-                
-                cell.numberOfLikes.attributedText = Font.NormalString(text: "\(count) likes", size: 14)
-                
+                cell.numberOfLikes.attributedText = Font.NormalString(text: "\(count) like", size: 14)
+
             }else {
                 
-                let likesCount = String(count - 1)
-                let combination = NSMutableAttributedString()
-                let boldUsername = Font.BoldString(text: "\(self.likedUser) ", size: 14)
-                let countOthers = Font.BoldString(text: "\(likesCount) others", size: 14)
-                let likeBy = Font.NormalString(text: "Liked By ", size: 14)
-                let and = Font.NormalString(text: "and ", size: 14)
-                combination.append(likeBy)
-                combination.append(boldUsername)
-                combination.append(and)
-                combination.append(countOthers)
-                cell.numberOfLikes.attributedText = combination
+                cell.numberOfLikes.attributedText = Font.NormalString(text: "\(count) likes", size: 14)
+
             }
+            
         })
+
+
         
         let dateFromServer = NSDate(timeIntervalSince1970: user.time!)
         let dateFormater : DateFormatter = DateFormatter()
@@ -262,10 +235,12 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.postImageHeight.constant  = (screenSize.height/2)
         cell.postImageWidth.constant = (screenSize.width/2)
 
-        
         cell.imageUID = user
         cell.delegate = self
+        cell.delegate2 = self
+
         return cell
+        
     }
     
     
@@ -295,7 +270,6 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             }
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

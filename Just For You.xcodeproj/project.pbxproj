@@ -40,6 +40,7 @@
 		A41CADAA1EC0575700280529 /* Livefeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CADA91EC0575700280529 /* Livefeed.swift */; };
 		A41CADAC1EC058F500280529 /* LivefeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */; };
 		A423586D1EAA171A00DCE4BE /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423586C1EAA171A00DCE4BE /* LocationViewController.swift */; };
+		A435CCD41ED59DA7006FC1E8 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */; };
 		A438467E1ECD9E1D0061AE9D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A438467D1ECD9E1D0061AE9D /* Profile.storyboard */; };
 		A43846801ECDA1680061AE9D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A438467F1ECDA1680061AE9D /* Home.storyboard */; };
 		A43846821ECDA1D00061AE9D /* Games.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A43846811ECDA1D00061AE9D /* Games.storyboard */; };
@@ -128,6 +129,7 @@
 		A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivefeedTableViewCell.swift; sourceTree = "<group>"; };
 		A422987A1ECEEEBB00E71B14 /* Just For You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Just For You.entitlements"; sourceTree = "<group>"; };
 		A423586C1EAA171A00DCE4BE /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		A438467D1ECD9E1D0061AE9D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		A438467F1ECDA1680061AE9D /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A43846811ECDA1D00061AE9D /* Games.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Games.storyboard; sourceTree = "<group>"; };
@@ -220,9 +222,10 @@
 			isa = PBXGroup;
 			children = (
 				A469F2F51E8CE90B00552137 /* Resources */,
-				A43846851ECDCF790061AE9D /* Swift File */,
+				A43846851ECDCF790061AE9D /* Model */,
 				A43846831ECDCF190061AE9D /* Storyboard */,
-				A43846841ECDCF520061AE9D /* ViewController */,
+				A435CCD01ED59D5E006FC1E8 /* View */,
+				A43846841ECDCF520061AE9D /* Controller */,
 			);
 			path = "Just For You";
 			sourceTree = "<group>";
@@ -245,6 +248,14 @@
 			path = "Just For YouUITests";
 			sourceTree = "<group>";
 		};
+		A435CCD01ED59D5E006FC1E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		A43846831ECDCF190061AE9D /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +268,7 @@
 			name = Storyboard;
 			sourceTree = "<group>";
 		};
-		A43846841ECDCF520061AE9D /* ViewController */ = {
+		A43846841ECDCF520061AE9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				A41665161E8B5F1500417B63 /* LoginViewController.swift */,
@@ -293,12 +304,14 @@
 				A41665171E8B5F1500417B63 /* MemoriesCollectionViewCell.swift */,
 				A416651D1E8B5F1500417B63 /* VerificationViewController.swift */,
 			);
-			name = ViewController;
+			name = Controller;
 			sourceTree = "<group>";
 		};
-		A43846851ECDCF790061AE9D /* Swift File */ = {
+		A43846851ECDCF790061AE9D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A41664C61E8B5A6900417B63 /* AppDelegate.swift */,
+				A469F2F31E8CE8EA00552137 /* DesignableTextField.swift */,
 				A41665281E8B60C300417B63 /* Just For You-Bridging-Header.h */,
 				A4892D531E9B84C300486959 /* FadeExtension.swift */,
 				A45E86331E8BBA0E000D06E1 /* DataService.swift */,
@@ -308,14 +321,12 @@
 				A41CADA91EC0575700280529 /* Livefeed.swift */,
 				A469F2F11E8CC5F300552137 /* User.swift */,
 			);
-			name = "Swift File";
+			name = Model;
 			sourceTree = "<group>";
 		};
 		A469F2F51E8CE90B00552137 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A41664C61E8B5A6900417B63 /* AppDelegate.swift */,
-				A469F2F31E8CE8EA00552137 /* DesignableTextField.swift */,
 				A44AFCC61E92581B00581EC5 /* Assets.xcassets */,
 				A416652B1E8B634C00417B63 /* GoogleService-Info.plist */,
 				A44AFCCE1E932DB700581EC5 /* giphy.gif */,
@@ -646,6 +657,7 @@
 				A469F2F41E8CE8EA00552137 /* DesignableTextField.swift in Sources */,
 				A41CADA31EBB12C100280529 /* FollowingTableViewCell.swift in Sources */,
 				A41CADAC1EC058F500280529 /* LivefeedTableViewCell.swift in Sources */,
+				A435CCD41ED59DA7006FC1E8 /* CornerRadius.swift in Sources */,
 				A41CAD521EAEDE2B00280529 /* SingleViewController.swift in Sources */,
 				A45E86341E8BBA0E000D06E1 /* DataService.swift in Sources */,
 				A479023E1E95FA6000ED04C3 /* TicTacToeViewController.swift in Sources */,

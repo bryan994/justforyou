@@ -122,13 +122,6 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
                         userDict["email"] = user.providerData[0].email
                         
                     }
-//                    if user.providerData[0].uid != "" {
-//                        let profileURL = "https://graph.facebook.com/\(user.providerData[0].uid)/picture?type=large"
-//                        let imgURL = NSURL(string: profileURL)
-//                        let imageData = NSData.init(contentsOf: imgURL! as URL)
-//                        let image = UIImage(data: imageData! as Data)
-//                        userDict["facebookImage"] = image
-//                    }
 
                     currentUserRef.setValue(userDict)
                     

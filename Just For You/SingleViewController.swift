@@ -121,11 +121,6 @@ class SingleViewController: UIViewController {
                             
                         }
                         
-                        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
-                        self.profileImage.clipsToBounds = true
-                        self.profileImage.layer.borderWidth = 1
-                        self.profileImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
-                        
                         if let profileImage = image.pImage {
                             
                             let url = NSURL(string: profileImage)
