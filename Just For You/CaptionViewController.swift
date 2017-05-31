@@ -10,9 +10,8 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
-import GooglePlaces
 
-class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, writeValueBackDelegate, CLLocationManagerDelegate{
+class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, writeValueBackDelegate{
     
     @IBOutlet weak var addLocation: DesignableTextField!
     
@@ -22,8 +21,6 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     
     var takenImage = UIImage()
     
-    var locationManager: CLLocationManager!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,18 +67,6 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         
     }
     
-    func segueToLocation() {
-        
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        
-        self.performSegue(withIdentifier: "LocationSegue", sender: self)
-        
-    }
-
     func dismissKeyboard() {
         
         self.captionTextView.resignFirstResponder()

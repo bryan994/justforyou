@@ -131,11 +131,6 @@ class FollowingViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }
         
-        cell.profileImage2.layer.cornerRadius = cell.profileImage2.frame.size.width/2
-        cell.profileImage2.clipsToBounds = true
-        cell.profileImage2.layer.borderWidth = 1
-        cell.profileImage2.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
-        
         let bolded = Font.BoldString(text: user.username!, size: 12)
         cell.label2.attributedText = bolded
         

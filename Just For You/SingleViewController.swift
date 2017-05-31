@@ -215,16 +215,6 @@ class SingleViewController: UIViewController {
             }
         })
         
-        let origImage2 = UIImage(named: "share")
-        let tintedImage2 = origImage2?.withRenderingMode(.alwaysTemplate)
-        self.shareButton.setImage(tintedImage2, for: .normal)
-        self.shareButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
-        
-        let origImage3 = UIImage(named: "comment")
-        let tintedImage3 = origImage3?.withRenderingMode(.alwaysTemplate)
-        self.commentButton.setImage(tintedImage3, for: .normal)
-        self.commentButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
-        
         postImageHeight.constant = (screenSize.height/2)
         postImageWidth.constant = (screenSize.width/2)
         

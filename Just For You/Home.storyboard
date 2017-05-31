@@ -99,7 +99,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="O8A-7Q-1ZN">
                                                     <rect key="frame" x="12" y="422" width="114" height="30"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4va-VV-6wu">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4va-VV-6wu" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="Ltz-IM-0qZ"/>
@@ -110,20 +110,20 @@
                                                                 <action selector="onPressedLikeButton:" destination="0VH-ag-guT" eventType="touchUpInside" id="InI-VA-EDO"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMh-33-Ny5">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMh-33-Ny5" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="42" y="0.0" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="EB6-Mj-pHh"/>
                                                                 <constraint firstAttribute="height" constant="30" id="bwU-tb-rSl"/>
                                                             </constraints>
                                                             <state key="normal" title="Comment" image="comment">
-                                                                <color key="titleColor" red="1" green="0.88199939250000003" blue="0.96255285000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="titleColor" red="0.98084529590000002" green="0.1982360323" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="commentOnButtonPressed:" destination="0VH-ag-guT" eventType="touchUpInside" id="0T8-Jq-Sdx"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-li-Bjg">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-li-Bjg" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="84" y="0.0" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="6Kv-Cs-3HA"/>
@@ -204,7 +204,7 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="message2" id="xGp-wu-XxN"/>
+                        <barButtonItem key="rightBarButtonItem" image="message2" id="xGp-wu-XxN" customClass="TintColor2" customModule="Just_For_You" customModuleProvider="target"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="NZF-E0-0by" id="hX7-tr-QpE"/>
@@ -269,7 +269,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gXq-5K-Pr1">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gXq-5K-Pr1" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="15" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="pfb-CN-8TH"/>
@@ -305,7 +305,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDn-RW-Iih">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDn-RW-Iih" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="15" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="XDD-lJ-MMw"/>

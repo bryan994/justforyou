@@ -370,7 +370,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89g-0Y-zoS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="680"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4U-fp-D2F">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
@@ -403,7 +403,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcD-IF-H4q">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yin" translatesAutoresizingMaskIntoConstraints="NO" id="iYo-1H-LBx">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yin" translatesAutoresizingMaskIntoConstraints="NO" id="iYo-1H-LBx" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                         <rect key="frame" x="5" y="5" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="6vs-7F-Skr"/>
@@ -449,7 +449,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-vj-JID">
                                                 <rect key="frame" x="12" y="418" width="114" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7g-OT-sN2">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7g-OT-sN2" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="fuW-Qh-qwv"/>
@@ -460,7 +460,7 @@
                                                             <action selector="likeButton:" destination="oeh-Nj-M4Y" eventType="touchUpInside" id="5qA-qw-yHY"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BD4-5O-dO9">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BD4-5O-dO9" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                         <rect key="frame" x="42" y="0.0" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="OUO-yr-bB8"/>
@@ -473,13 +473,13 @@
                                                             <action selector="commentButton:" destination="oeh-Nj-M4Y" eventType="touchUpInside" id="xth-4c-5NV"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="141-5J-hZe">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="141-5J-hZe" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                         <rect key="frame" x="84" y="0.0" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="LlT-u4-Soz"/>
                                                             <constraint firstAttribute="height" constant="30" id="mn4-wS-gYd"/>
                                                         </constraints>
-                                                        <state key="normal" title="Share" image="share"/>
+                                                        <state key="normal" title="message" image="message"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -629,7 +629,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="570" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EUR-EM-FQ9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostedCell2" rowHeight="570" id="GWt-F7-70a" customClass="Posted2TableViewCell" customModule="Just_For_You" customModuleProvider="target">
@@ -706,7 +706,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-vz-hmR">
                                                     <rect key="frame" x="12" y="422" width="114" height="30"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niJ-wK-7Fk">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niJ-wK-7Fk" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="LlA-kZ-g1t"/>
@@ -717,7 +717,7 @@
                                                                 <action selector="likeOnButtonPressed:" destination="GWt-F7-70a" eventType="touchUpInside" id="4Ht-Zi-gtp"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-bZ-aej">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-bZ-aej" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="42" y="0.0" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="Aud-9g-IK7"/>
@@ -730,13 +730,13 @@
                                                                 <action selector="commentOnButtonPressed:" destination="GWt-F7-70a" eventType="touchUpInside" id="8FT-JI-J91"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-tF-IAy">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-tF-IAy" customClass="TintColor" customModule="Just_For_You" customModuleProvider="target">
                                                             <rect key="frame" x="84" y="0.0" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="hM5-ak-IBy"/>
                                                                 <constraint firstAttribute="width" constant="30" id="teP-IC-RyY"/>
                                                             </constraints>
-                                                            <state key="normal" title="Share" image="share"/>
+                                                            <state key="normal" title="Share" image="message"/>
                                                             <connections>
                                                                 <action selector="shareOnButtonPressed:" destination="GWt-F7-70a" eventType="touchUpInside" id="cPC-X0-3p9"/>
                                                             </connections>
@@ -854,7 +854,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-bo-7Ne">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-bo-7Ne" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="5" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="I70-XT-nXg"/>
@@ -922,7 +922,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FQ2-GT-eBj">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FQ2-GT-eBj" customClass="CornerRadius" customModule="Just_For_You" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="5" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="ARc-L2-D63"/>
@@ -1207,16 +1207,16 @@
         <image name="comment" width="512" height="512"/>
         <image name="heart2" width="512" height="512"/>
         <image name="letter" width="3000" height="2762"/>
-        <image name="share" width="512" height="512"/>
+        <image name="message" width="512" height="512"/>
         <image name="video" width="256" height="256"/>
         <image name="yin" width="740" height="758"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ATa-ZH-QrN"/>
-        <segue reference="UxP-tg-tWT"/>
-        <segue reference="3Pi-PY-JWv"/>
+        <segue reference="zl3-xq-rw2"/>
         <segue reference="Dty-Bp-der"/>
-        <segue reference="uEe-fD-Q7K"/>
+        <segue reference="3Pi-PY-JWv"/>
         <segue reference="3Ri-Z9-V7F"/>
+        <segue reference="UxP-tg-tWT"/>
+        <segue reference="uEe-fD-Q7K"/>
     </inferredMetricsTieBreakers>
 </document>

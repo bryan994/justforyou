@@ -140,11 +140,6 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
-        cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.size.width/2
-        cell.profileImageView.clipsToBounds = true
-        cell.profileImageView.layer.borderWidth = 1
-        cell.profileImageView.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
-        
         if let profileImage = user.pImage {
             
             let url = NSURL(string: profileImage)
@@ -230,16 +225,6 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.timeLabel.font = UIFont(name: "Baskerville-Italic", size: 14)
         cell.timeLabel.textColor = UIColor.lightGray
         cell.timeLabel.text = date
-        
-        let origImage2 = UIImage(named: "share")
-        let tintedImage2 = origImage2?.withRenderingMode(.alwaysTemplate)
-        cell.shareButton.setImage(tintedImage2, for: .normal)
-        cell.shareButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
-        
-        let origImage3 = UIImage(named: "comment")
-        let tintedImage3 = origImage3?.withRenderingMode(.alwaysTemplate)
-        cell.commentButton.setImage(tintedImage3, for: .normal)
-        cell.commentButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
         
         cell.postImageHeight.constant = (screenSize.height/2)
         cell.postImageWidth.constant = (screenSize.width/2)

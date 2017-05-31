@@ -201,11 +201,7 @@ class LivefeedViewController: UIViewController, UITableViewDelegate, UITableView
             cell.postedImage.isHidden = false
             cell.followButton.isHidden = true
         }
-        
-        cell.userImage.layer.cornerRadius = cell.userImage.frame.size.width/2
-        cell.userImage.clipsToBounds = true
-        cell.userImage.layer.borderWidth = 1
-        cell.userImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
+
         
         let button: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userProfileSegue))
         button.numberOfTapsRequired = 1

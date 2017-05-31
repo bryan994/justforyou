@@ -221,17 +221,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         button.numberOfTapsRequired = 1
         cell.profileImage.addGestureRecognizer(button)
         cell.profileImage.isUserInteractionEnabled = true 
-        
-        let origImage2 = UIImage(named: "message2")
-        let tintedImage2 = origImage2?.withRenderingMode(.alwaysTemplate)
-        cell.messageButton.setImage(tintedImage2, for: .normal)
-        cell.messageButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
-        
-        let origImage3 = UIImage(named: "comment")
-        let tintedImage3 = origImage3?.withRenderingMode(.alwaysTemplate)
-        cell.commentButton.setImage(tintedImage3, for: .normal)
-        cell.commentButton.tintColor =  UIColor(red: 255/255, green: 102/255, blue: 203/255, alpha: 1)
-        
+            
         cell.postImageHeight.constant  = (screenSize.height/2)
         cell.postImageWidth.constant = (screenSize.width/2)
 

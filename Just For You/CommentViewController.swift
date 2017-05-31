@@ -240,11 +240,6 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
                 
             }
             
-            cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
-            cell.profileImage.clipsToBounds = true
-            cell.profileImage.layer.borderWidth = 1
-            cell.profileImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
-            
             let combination = NSMutableAttributedString()
             let boldString = Font.BoldString(text: "\(comment.userName!) ", size: 12)
             let normalString = Font.NormalString(text: comment.text!, size: 12)

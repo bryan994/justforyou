@@ -134,11 +134,6 @@ class FollowerViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
         
-        cell.followerImage.layer.cornerRadius = cell.followerImage.frame.size.width/2
-        cell.followerImage.clipsToBounds = true
-        cell.followerImage.layer.borderWidth = 1
-        cell.followerImage.layer.borderColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1).cgColor
-        
         let bolded = Font.BoldString(text: user.username!, size: 12)
         cell.label.attributedText = bolded
         
