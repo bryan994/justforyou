@@ -15,7 +15,7 @@ protocol writeValueBackDelegate {
     
 }
 
-class LocationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class LocationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,14 +27,33 @@ class LocationViewController: UIViewController, UITableViewDelegate, UITableView
     
     var placeName: String?
     
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+        
         tableView.delegate = self
         tableView.dataSource = self
-        placesClient = GMSPlacesClient.shared()
-        self.nearbyPlaces()
 
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        if status == .authorizedWhenInUse {
+            
+            placesClient = GMSPlacesClient.shared()
+            self.nearbyPlaces()
+            
+        } else if status == .denied || status == .restricted || status == .notDetermined {
+            
+            manager.requestWhenInUseAuthorization()
+            
+        }
     }
     
     func nearbyPlaces() {

@@ -39,6 +39,7 @@
 		A41CADA81EC0573200280529 /* LivefeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CADA71EC0573100280529 /* LivefeedViewController.swift */; };
 		A41CADAA1EC0575700280529 /* Livefeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CADA91EC0575700280529 /* Livefeed.swift */; };
 		A41CADAC1EC058F500280529 /* LivefeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */; };
+		A41EE20F1EDEC3A40033CE38 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41EE20E1EDEC3A40033CE38 /* TintColor.swift */; };
 		A423586D1EAA171A00DCE4BE /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423586C1EAA171A00DCE4BE /* LocationViewController.swift */; };
 		A435CCD41ED59DA7006FC1E8 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */; };
 		A438467E1ECD9E1D0061AE9D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A438467D1ECD9E1D0061AE9D /* Profile.storyboard */; };
@@ -127,6 +128,7 @@
 		A41CADA71EC0573100280529 /* LivefeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivefeedViewController.swift; sourceTree = "<group>"; };
 		A41CADA91EC0575700280529 /* Livefeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Livefeed.swift; sourceTree = "<group>"; };
 		A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivefeedTableViewCell.swift; sourceTree = "<group>"; };
+		A41EE20E1EDEC3A40033CE38 /* TintColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		A422987A1ECEEEBB00E71B14 /* Just For You.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Just For You.entitlements"; sourceTree = "<group>"; };
 		A423586C1EAA171A00DCE4BE /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
@@ -252,6 +254,16 @@
 			isa = PBXGroup;
 			children = (
 				A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */,
+				A41EE20E1EDEC3A40033CE38 /* TintColor.swift */,
+				A4892D571E9C75CA00486959 /* DiaryTableViewCell.swift */,
+				A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */,
+				A41CAD9A1EB8B33000280529 /* CommentTableViewCell.swift */,
+				A41CAD9C1EB8B4D500280529 /* CommentTableViewCell2.swift */,
+				A41CADA01EBB12B100280529 /* FollowerTableViewCell.swift */,
+				A41CADA21EBB12C100280529 /* FollowingTableViewCell.swift */,
+				A41CAD4D1EAE013F00280529 /* PostedCollectionViewCell.swift */,
+				A47A846B1EC5581B00EFCD6A /* Posted2TableViewCell.swift */,
+				A41665171E8B5F1500417B63 /* MemoriesCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -275,33 +287,24 @@
 				A416651C1E8B5F1500417B63 /* RegisterViewController.swift */,
 				A41665191E8B5F1500417B63 /* PreviewViewController.swift */,
 				A4892D551E9C754100486959 /* DiaryViewController.swift */,
-				A4892D571E9C75CA00486959 /* DiaryTableViewCell.swift */,
 				A4F811E21E9E36AB004B03E0 /* ProfileViewController.swift */,
 				A41CAD551EAF314500280529 /* UserProfileViewController.swift */,
 				A4A172201EC2F7E600E4512B /* CameraViewController.swift */,
 				A4F811EC1E9F5E1A004B03E0 /* GamesViewController.swift */,
 				A4F811E81E9F5D9B004B03E0 /* GamesCollectionViewCell.swift */,
 				A41CADA71EC0573100280529 /* LivefeedViewController.swift */,
-				A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */,
 				A44A873F1EA062F300DCE19F /* CaptionViewController.swift */,
 				A416651B1E8B5F1500417B63 /* QuizViewController.swift */,
 				A416651A1E8B5F1500417B63 /* Quiz2ViewController.swift */,
 				A479023D1E95FA5F00ED04C3 /* TicTacToeViewController.swift */,
 				A41CAD981EB88F0100280529 /* CommentViewController.swift */,
-				A41CAD9A1EB8B33000280529 /* CommentTableViewCell.swift */,
-				A41CAD9C1EB8B4D500280529 /* CommentTableViewCell2.swift */,
 				A41CAD941EB87E6B00280529 /* FollowerViewController.swift */,
-				A41CADA01EBB12B100280529 /* FollowerTableViewCell.swift */,
 				A41CAD961EB87E7B00280529 /* FollowingViewController.swift */,
-				A41CADA21EBB12C100280529 /* FollowingTableViewCell.swift */,
 				A41CAD511EAEDE2B00280529 /* SingleViewController.swift */,
 				A41CAD4F1EAE01AF00280529 /* PostedViewController.swift */,
-				A41CAD4D1EAE013F00280529 /* PostedCollectionViewCell.swift */,
 				A47A84691EC557DE00EFCD6A /* Posted2ViewController.swift */,
-				A47A846B1EC5581B00EFCD6A /* Posted2TableViewCell.swift */,
 				A423586C1EAA171A00DCE4BE /* LocationViewController.swift */,
 				A41665181E8B5F1500417B63 /* MemoriesViewController.swift */,
-				A41665171E8B5F1500417B63 /* MemoriesCollectionViewCell.swift */,
 				A416651D1E8B5F1500417B63 /* VerificationViewController.swift */,
 			);
 			name = Controller;
@@ -687,6 +690,7 @@
 				A4892D581E9C75CA00486959 /* DiaryTableViewCell.swift in Sources */,
 				A41665221E8B5F1500417B63 /* MemoriesViewController.swift in Sources */,
 				A41665231E8B5F1500417B63 /* PreviewViewController.swift in Sources */,
+				A41EE20F1EDEC3A40033CE38 /* TintColor.swift in Sources */,
 				A41CAD9D1EB8B4D500280529 /* CommentTableViewCell2.swift in Sources */,
 				A41CAD9F1EB978A600280529 /* Comment.swift in Sources */,
 				A47A846A1EC557DE00EFCD6A /* Posted2ViewController.swift in Sources */,

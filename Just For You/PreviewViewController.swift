@@ -8,9 +8,9 @@
 
 
 import UIKit
-import GooglePlaces
 
-class PreviewViewController: UIViewController, CLLocationManagerDelegate {
+class PreviewViewController: UIViewController {
+    
     @IBOutlet weak var imageView: UIImageView!
     
     var timer = Timer()
@@ -19,10 +19,8 @@ class PreviewViewController: UIViewController, CLLocationManagerDelegate {
     
     var counter2 = 0
     
-    var locationManager: CLLocationManager!
-
-    
     var array = ["Hello", "Hi", "Bye", "Love", "Congratulation"]
+    
     var image: [UIImage] = [UIImage(named: "image1.jpg")!,UIImage(named: "image2.jpg")!,UIImage(named: "image3.jpg")!,UIImage(named: "image4.jpg")!,UIImage(named: "image5.jpg")!,UIImage(named: "image6.jpg")!,UIImage(named: "image7.jpg")!]
 
 
@@ -30,13 +28,6 @@ class PreviewViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-
-
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(PreviewViewController.updateCounter), userInfo: nil, repeats: true)
         
         self.view.bringSubview(toFront: label);
