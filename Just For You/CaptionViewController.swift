@@ -88,10 +88,10 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         }else {
         
             let uniqueImageName = NSUUID().uuidString
-            let storageRef = FIRStorage.storage().reference().child("\(uniqueImageName).png")
+            let storageRef = Storage.storage().reference().child("\(uniqueImageName).png")
             
             let postImage = UIImageJPEGRepresentation((self.takenImage),0.5)!
-            storageRef.put(postImage, metadata: nil, completion: { metadata, error in
+            storageRef.putData(postImage, metadata: nil, completion: { metadata, error in
                 
                 if error != nil {
                     
@@ -107,7 +107,7 @@ class CaptionViewController: UIViewController, UITextViewDelegate, UITextFieldDe
                     currentUser.setValue(value)
                     
                     
-                    FIRDatabase.database().reference().child("users").child(user).child("images").updateChildValues([currentUser.key: true])
+                    Database.database().reference().child("users").child(user).child("images").updateChildValues([currentUser.key: true])
                     
                     SDImageCache.shared().store(self.takenImage, forKey: imageURL)
                     

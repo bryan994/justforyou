@@ -22,7 +22,7 @@ class User{
     var location:String?
     var myself: Bool = false
     
-    init?(snapshot: FIRDataSnapshot){
+    init?(snapshot: DataSnapshot){
         
         self.uid = snapshot.key
         

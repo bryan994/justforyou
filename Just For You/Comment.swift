@@ -18,7 +18,7 @@ class Comment{
     var profileImage: String?
     var userName: String?
     
-    init?(snapshot: FIRDataSnapshot){
+    init?(snapshot: DataSnapshot){
         
         self.uid = snapshot.key
         

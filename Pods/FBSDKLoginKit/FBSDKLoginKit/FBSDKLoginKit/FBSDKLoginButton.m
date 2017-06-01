@@ -197,7 +197,7 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
                                                       toItem:nil
                                                    attribute:NSLayoutAttributeNotAnAttribute
                                                   multiplier:1
-                                                    constant:48]];
+                                                    constant:28]];
   [self _updateContent];
 
   [self addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];

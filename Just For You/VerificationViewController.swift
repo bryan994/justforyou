@@ -96,7 +96,7 @@ class VerificationViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func logOutButton(_ sender: Any) {
         
-        try! FIRAuth.auth()?.signOut()
+        try! Auth.auth().signOut()
         UserDefaults.standard.removeObject(forKey: "userUID")
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()

@@ -235,11 +235,11 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         self.imageView.image = image
         self.delegate?.changeImage(profileImage: image)
         let uniqueImageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("\(uniqueImageName).png")
+        let storageRef = Storage.storage().reference().child("\(uniqueImageName).png")
         
         let selectedImage = UIImageJPEGRepresentation((self.imageView.image)!, 0.5)!
-        storageRef.put(selectedImage, metadata: nil, completion: { (metadata, error) in
-            
+        storageRef.putData(selectedImage, metadata: nil, completion: { (metadata, error) in
+        
             if error != nil {
                 
                 print(error!)
@@ -330,7 +330,7 @@ class ProfileViewController: UIViewController, FusumaDelegate{
     
     @IBAction func logoutOnButtonPressed(_ sender: Any) {
         
-        try! FIRAuth.auth()?.signOut()
+        try! Auth.auth().signOut()
         UserDefaults.standard.removeObject(forKey: "userUID")
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()
