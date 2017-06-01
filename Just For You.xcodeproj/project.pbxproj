@@ -59,6 +59,7 @@
 		A4892D541E9B84C300486959 /* FadeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D531E9B84C300486959 /* FadeExtension.swift */; };
 		A4892D561E9C754100486959 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D551E9C754100486959 /* DiaryViewController.swift */; };
 		A4892D581E9C75CA00486959 /* DiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D571E9C75CA00486959 /* DiaryTableViewCell.swift */; };
+		A49F8FAF1EDFCE9400A94857 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D551E9C754100486959 /* DiaryViewController.swift */; };
 		A4A172211EC2F7E600E4512B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A172201EC2F7E600E4512B /* CameraViewController.swift */; };
 		A4F811E31E9E36AB004B03E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F811E21E9E36AB004B03E0 /* ProfileViewController.swift */; };
 		A4F811E91E9F5D9B004B03E0 /* GamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F811E81E9F5D9B004B03E0 /* GamesCollectionViewCell.swift */; };
@@ -702,6 +703,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A49F8FAF1EDFCE9400A94857 /* DiaryViewController.swift in Sources */,
 				A41664DC1E8B5A6900417B63 /* Just_For_YouTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

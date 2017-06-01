@@ -83,9 +83,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
             
         }else {
             
-            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             
-            FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            Auth.auth().signIn(with: credential) { (user, error) in
                 if let user = user {
                     
                     UserDefaults.standard.set(user.uid, forKey: "userUID")
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
         guard let email = email.text, let password = password.text else {
             return
         }
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let person = user {
                 
                 UserDefaults.standard.set((user!.uid), forKey: "userUID")

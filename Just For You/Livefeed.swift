@@ -23,7 +23,7 @@ class Livefeed{
     var commentUID: String?
     var imageID: String?
 
-    init?(snapshot: FIRDataSnapshot){
+    init?(snapshot: DataSnapshot){
         
         self.uid = snapshot.key
         

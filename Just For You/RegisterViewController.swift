@@ -100,9 +100,9 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
             
         }else {
             
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
-            FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            Auth.auth().signIn(with: credential) { (user, error) in
                 if let user = user {
                     
                     UserDefaults.standard.set(user.uid, forKey: "userUID")
@@ -150,7 +150,7 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
                 return
         }
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
             if let user = user {
                 
                 // stores into user defaults under key userUID, the user's

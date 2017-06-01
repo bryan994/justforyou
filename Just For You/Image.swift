@@ -21,7 +21,7 @@ class Image{
     var numberOfLike: Int?
     var location:String?
     
-    init?(snapshot: FIRDataSnapshot){
+    init?(snapshot: DataSnapshot){
         
         self.uid = snapshot.key
         
