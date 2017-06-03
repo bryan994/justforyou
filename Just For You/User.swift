@@ -73,6 +73,7 @@ class User{
         
     }
     class func currentUserUid() -> String? {
+        
         return UserDefaults.standard.value(forKey: "userUID") as? String
     }
 }

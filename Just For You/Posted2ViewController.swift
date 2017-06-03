@@ -23,12 +23,7 @@ class Posted2ViewController: UIViewController, UITableViewDataSource, UITableVie
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.tableView.allowsSelection = false
-        self.tableView.estimatedRowHeight = 570
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        
+                
         DataService.imagesRef.observe(.childAdded, with: { imageSnapshot in
             
             if let image = Image(snapshot: imageSnapshot) {

@@ -26,10 +26,9 @@ class PostedViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
-        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        layout.itemSize = CGSize(width: (width/3) - 1, height: (width/3) - 2)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.itemSize = CGSize(width: (width/3) - 1, height: (width/3) - 1)
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
         collectionView!.collectionViewLayout = layout
         
         guard let currentUserID = self.userProfile else {

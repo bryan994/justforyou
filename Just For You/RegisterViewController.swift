@@ -11,7 +11,7 @@ import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 
-class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailAddress: UITextField!
     
@@ -19,132 +19,83 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
     
     @IBOutlet weak var password: UITextField!
     
-    @IBOutlet weak var googleLogin: GIDSignInButton!
-    
     @IBOutlet weak var registerButton: UIButton!
     
-    @IBOutlet weak var fbLogin: FBSDKLoginButton!
-        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        GIDSignIn.sharedInstance().uiDelegate = self
-        fbLogin.delegate = self
-        let titleText = NSAttributedString(string: "Sign in with Facebook")
-        fbLogin.setAttributedTitle(titleText, for: .normal)
-        fbLogin.readPermissions = ["public_profile", "email", "user_photos"]
-        buttonDesign()
         
         emailAddress.delegate = self
         username.delegate = self
         password.delegate = self
-        
-        self.emailAddress.backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1)
-        self.emailAddress.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSForegroundColorAttributeName: UIColor.darkGray])
-        self.username.backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1)
-        self.username.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSForegroundColorAttributeName: UIColor.darkGray])
-        self.password.backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 203/255, alpha: 1)
-        self.password.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.darkGray])
-        
-        self.view.backgroundColor = UIColor.darkGray
 
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
-//        
-//        self.view.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
+        
+        self.view.addGestureRecognizer(tapGesture)
 
     }
     
-    func moveTextField(textField: UITextField, moveDistance: Int, up:Bool) {
+    @IBAction func facebookButton(_ sender: Any) {
         
-        let moveDuration = 0.3
-        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        let facebookLogin = FBSDKLoginManager()
         
-        UIView.beginAnimations("animateTextField", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(moveDuration)
-        self.view.frame = self.view.frame.offsetBy(dx:0, dy: movement)
-        UIView.commitAnimations()
-
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        moveTextField(textField: textField, moveDistance: -90, up: true)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        moveTextField(textField: textField, moveDistance: -90, up: false)
-    }
-
-
-    
-    func buttonDesign() {
-        
-        fbLogin.layer.cornerRadius = 5
-//        googleLogin.layer.cornerRadius = 5
-        registerButton.layer.cornerRadius = 5
-        
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        
-        if (error != nil) {
+        facebookLogin.logIn(withReadPermissions: ["public_profile", "email", "user_photos"], from: self, handler: { (result, error) in
             
-            print(error.localizedDescription)
-            
-        }else if (result.isCancelled) {
-            
-            print("Facebook cancelled")
-            
-        }else {
-            
-        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        
-            Auth.auth().signIn(with: credential) { (user, error) in
-                if let user = user {
-                    
-                    UserDefaults.standard.set(user.uid, forKey: "userUID")
-                    UserDefaults.standard.synchronize()
-                    
-                    let currentUserRef = DataService.usersRef.child(user.uid)
-                    var userDict: Dictionary<String, String> = [:]
-
-                    if user.providerData[0].displayName != nil {
+            if error != nil {
+                
+                print("There is an error: \(String(describing: error))")
+                
+            }else if (result?.isCancelled) == true {
+                
+                print("Facebook cancelled")
+                
+            }else {
+                
+                print("Succesfully log in with facebook")
+                
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    if let user = user {
                         
-                        userDict["username"] = user.providerData[0].displayName
+                        UserDefaults.standard.set(user.uid, forKey: "userUID")
+                        UserDefaults.standard.synchronize()
                         
+                        let currentUserRef = DataService.usersRef.child(user.uid)
+                        var userDict: Dictionary<String, String> = [:]
+                        
+                        if user.providerData[0].displayName != nil {
+                            
+                            userDict["username"] = user.providerData[0].displayName
+                            
+                        }
+                        
+                        if user.providerData[0].email != nil {
+                            
+                            userDict["email"] = user.providerData[0].email
+                            
+                        }
+                        
+                        currentUserRef.setValue(userDict)
+                        
+                        let appDelegateTemp = UIApplication.shared.delegate!
+                        
+                        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        // load view controller with the storyboardID of HomeTabBarController
+                        let tabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController")
+                        
+                        appDelegateTemp.window?!.rootViewController = tabBarController
                     }
-                    
-                    if user.providerData[0].email != nil {
-                        
-                        userDict["email"] = user.providerData[0].email
-                        
-                    }
-
-                    currentUserRef.setValue(userDict)
-                    
-                    let appDelegateTemp = UIApplication.shared.delegate!
-                    
-                    let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    // load view controller with the storyboardID of HomeTabBarController
-                    let tabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController")
-                    
-                    appDelegateTemp.window?!.rootViewController = tabBarController
                 }
             }
-        }
-    }
-
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-
+        
+        })
     }
     
     @IBAction func registerButton(_ sender: Any) {
         
         guard
-            let name = username.text,
+            let username = username.text,
             let email = emailAddress.text,
             let password = password.text else {
                 return
@@ -160,18 +111,20 @@ class RegisterViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginB
                 self.performSegue(withIdentifier: "HomeSegue", sender: nil)
                 
                 let currentUserRef = DataService.usersRef.child(user.uid)
-                let userDict = ["email": email, "username": name]
+                let userDict = ["email": email, "username": username]
                 currentUserRef.setValue(userDict)
                 
-            }else if self.emailAddress.text == "" || self.password.text == "" || self.username.text == "" {
+            }else if email == "" || password == "" || username == "" {
                 
-                let alertController = UIAlertController(title: "Please don't leave the email or password empty", message: "Please enter your password again", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Please don't leave the email, username or password empty", message: "Please fill in all column", preferredStyle: .alert)
                 
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(defaultAction)
                 
                 self.present(alertController, animated: true, completion: nil)
+                
             }else {
+                
                 let alert = UIAlertController(title: "Sign Up Failed", message: error?.localizedDescription, preferredStyle: .alert)
                 
                 let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
