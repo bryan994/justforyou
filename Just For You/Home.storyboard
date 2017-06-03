@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="570" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NZF-E0-0by">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="570" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NZF-E0-0by" customClass="TableView" customModule="Just_For_You" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -105,6 +105,7 @@
                                                                 <constraint firstAttribute="height" constant="30" id="Ltz-IM-0qZ"/>
                                                                 <constraint firstAttribute="width" constant="30" id="iqC-zX-0TK"/>
                                                             </constraints>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="18"/>
                                                             <state key="normal" title="Like" image="heart2"/>
                                                             <connections>
                                                                 <action selector="onPressedLikeButton:" destination="0VH-ag-guT" eventType="touchUpInside" id="InI-VA-EDO"/>
@@ -116,6 +117,7 @@
                                                                 <constraint firstAttribute="width" constant="30" id="EB6-Mj-pHh"/>
                                                                 <constraint firstAttribute="height" constant="30" id="bwU-tb-rSl"/>
                                                             </constraints>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="18"/>
                                                             <state key="normal" title="Comment" image="comment">
                                                                 <color key="titleColor" red="0.98084529590000002" green="0.1982360323" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
@@ -129,6 +131,7 @@
                                                                 <constraint firstAttribute="width" constant="30" id="6Kv-Cs-3HA"/>
                                                                 <constraint firstAttribute="height" constant="30" id="G34-5c-HwP"/>
                                                             </constraints>
+                                                            <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="18"/>
                                                             <state key="normal" title="Share" image="message"/>
                                                             <connections>
                                                                 <action selector="messageOnButtonPressed:" destination="0VH-ag-guT" eventType="touchUpInside" id="6hR-AE-A9j"/>
@@ -166,6 +169,7 @@
                                                 <constraint firstItem="O8A-7Q-1ZN" firstAttribute="leading" secondItem="yEt-Rs-SAp" secondAttribute="leading" constant="12" id="zrh-XJ-gMT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="captionLabel" destination="obq-2p-poi" id="6Ku-uY-qfY"/>
                                             <outlet property="commentButton" destination="BMh-33-Ny5" id="LqF-0A-PVG"/>

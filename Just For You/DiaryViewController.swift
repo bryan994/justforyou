@@ -29,11 +29,6 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.tableView.allowsSelection = false
-        self.tableView.estimatedRowHeight = 570
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        
         self.navigationItem.title = "Yinstagram"
     
         DataService.imagesRef.observe(.childAdded, with: { imageSnapshot in

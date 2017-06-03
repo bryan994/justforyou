@@ -60,7 +60,11 @@
 		A4892D561E9C754100486959 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D551E9C754100486959 /* DiaryViewController.swift */; };
 		A4892D581E9C75CA00486959 /* DiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D571E9C75CA00486959 /* DiaryTableViewCell.swift */; };
 		A49F8FAF1EDFCE9400A94857 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4892D551E9C754100486959 /* DiaryViewController.swift */; };
+		A49F90321EE1169B00A94857 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F90311EE1169B00A94857 /* TableView.swift */; };
+		A49F90341EE14A0B00A94857 /* TextfieldBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F90331EE14A0B00A94857 /* TextfieldBorder.swift */; };
 		A4A172211EC2F7E600E4512B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A172201EC2F7E600E4512B /* CameraViewController.swift */; };
+		A4DF07BB1EE15E3800AC39C6 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF07BA1EE15E3800AC39C6 /* BackgroundColor.swift */; };
+		A4DF07BD1EE2452800AC39C6 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF07BC1EE2452800AC39C6 /* Segue.swift */; };
 		A4F811E31E9E36AB004B03E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F811E21E9E36AB004B03E0 /* ProfileViewController.swift */; };
 		A4F811E91E9F5D9B004B03E0 /* GamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F811E81E9F5D9B004B03E0 /* GamesCollectionViewCell.swift */; };
 		A4F811ED1E9F5E1A004B03E0 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F811EC1E9F5E1A004B03E0 /* GamesViewController.swift */; };
@@ -150,7 +154,11 @@
 		A4892D531E9B84C300486959 /* FadeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeExtension.swift; sourceTree = "<group>"; };
 		A4892D551E9C754100486959 /* DiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		A4892D571E9C75CA00486959 /* DiaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryTableViewCell.swift; sourceTree = "<group>"; };
+		A49F90311EE1169B00A94857 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		A49F90331EE14A0B00A94857 /* TextfieldBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldBorder.swift; sourceTree = "<group>"; };
 		A4A172201EC2F7E600E4512B /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		A4DF07BA1EE15E3800AC39C6 /* BackgroundColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
+		A4DF07BC1EE2452800AC39C6 /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
 		A4F811E21E9E36AB004B03E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A4F811E81E9F5D9B004B03E0 /* GamesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesCollectionViewCell.swift; sourceTree = "<group>"; };
 		A4F811EC1E9F5E1A004B03E0 /* GamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
@@ -255,7 +263,12 @@
 			isa = PBXGroup;
 			children = (
 				A435CCD31ED59DA7006FC1E8 /* CornerRadius.swift */,
+				A4DF07BA1EE15E3800AC39C6 /* BackgroundColor.swift */,
 				A41EE20E1EDEC3A40033CE38 /* TintColor.swift */,
+				A41CAD531EAEF58300280529 /* Font.swift */,
+				A4DF07BC1EE2452800AC39C6 /* Segue.swift */,
+				A49F90311EE1169B00A94857 /* TableView.swift */,
+				A49F90331EE14A0B00A94857 /* TextfieldBorder.swift */,
 				A4892D571E9C75CA00486959 /* DiaryTableViewCell.swift */,
 				A41CADAB1EC058F500280529 /* LivefeedTableViewCell.swift */,
 				A41CAD9A1EB8B33000280529 /* CommentTableViewCell.swift */,
@@ -321,7 +334,6 @@
 				A45E86331E8BBA0E000D06E1 /* DataService.swift */,
 				A44A873D1EA0598A00DCE19F /* Image.swift */,
 				A41CAD9E1EB978A600280529 /* Comment.swift */,
-				A41CAD531EAEF58300280529 /* Font.swift */,
 				A41CADA91EC0575700280529 /* Livefeed.swift */,
 				A469F2F11E8CC5F300552137 /* User.swift */,
 			);
@@ -655,6 +667,7 @@
 			files = (
 				A469F2F21E8CC5F300552137 /* User.swift in Sources */,
 				A41665261E8B5F1500417B63 /* RegisterViewController.swift in Sources */,
+				A49F90341EE14A0B00A94857 /* TextfieldBorder.swift in Sources */,
 				A4F811E31E9E36AB004B03E0 /* ProfileViewController.swift in Sources */,
 				A41CAD501EAE01AF00280529 /* PostedViewController.swift in Sources */,
 				A41665251E8B5F1500417B63 /* QuizViewController.swift in Sources */,
@@ -662,6 +675,7 @@
 				A41CADA31EBB12C100280529 /* FollowingTableViewCell.swift in Sources */,
 				A41CADAC1EC058F500280529 /* LivefeedTableViewCell.swift in Sources */,
 				A435CCD41ED59DA7006FC1E8 /* CornerRadius.swift in Sources */,
+				A49F90321EE1169B00A94857 /* TableView.swift in Sources */,
 				A41CAD521EAEDE2B00280529 /* SingleViewController.swift in Sources */,
 				A45E86341E8BBA0E000D06E1 /* DataService.swift in Sources */,
 				A479023E1E95FA6000ED04C3 /* TicTacToeViewController.swift in Sources */,
@@ -675,6 +689,7 @@
 				A41665271E8B5F1500417B63 /* VerificationViewController.swift in Sources */,
 				A423586D1EAA171A00DCE4BE /* LocationViewController.swift in Sources */,
 				A44A87401EA062F300DCE19F /* CaptionViewController.swift in Sources */,
+				A4DF07BD1EE2452800AC39C6 /* Segue.swift in Sources */,
 				A41CAD4E1EAE013F00280529 /* PostedCollectionViewCell.swift in Sources */,
 				A41CAD561EAF314500280529 /* UserProfileViewController.swift in Sources */,
 				A4892D541E9B84C300486959 /* FadeExtension.swift in Sources */,
@@ -690,6 +705,7 @@
 				A4F811E91E9F5D9B004B03E0 /* GamesCollectionViewCell.swift in Sources */,
 				A4892D581E9C75CA00486959 /* DiaryTableViewCell.swift in Sources */,
 				A41665221E8B5F1500417B63 /* MemoriesViewController.swift in Sources */,
+				A4DF07BB1EE15E3800AC39C6 /* BackgroundColor.swift in Sources */,
 				A41665231E8B5F1500417B63 /* PreviewViewController.swift in Sources */,
 				A41EE20F1EDEC3A40033CE38 /* TintColor.swift in Sources */,
 				A41CAD9D1EB8B4D500280529 /* CommentTableViewCell2.swift in Sources */,

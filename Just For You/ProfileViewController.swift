@@ -104,9 +104,19 @@ class ProfileViewController: UIViewController, FusumaDelegate{
         followersStackView.addGestureRecognizer(followers)
         followersStackView.isUserInteractionEnabled = true
         
+        automaticallyAdjustsScrollViewInsets = false
+
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
         if select {
             
-            self.contentViewHeight.constant = self.collectionContainer.bounds.size.height + self.containerView.bounds.size.height
+            
+            self.contentViewHeight.constant = self.collectionContainer.bounds.size.height + self.containerView.bounds.size.height - 108
+            
             
         }else {
             
@@ -205,19 +215,16 @@ class ProfileViewController: UIViewController, FusumaDelegate{
             UIView.animate(withDuration: 0.5, animations: {
                 self.collectionContainer.alpha = 1
                 self.tableContainer.alpha = 0
+                self.select = false
             })
-            
-            self.select = false
             
         } else {
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.collectionContainer.alpha = 0
                 self.tableContainer.alpha = 1
+                self.select = true
             })
-            
-            self.select = true
-
         }
     }
 

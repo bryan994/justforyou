@@ -9,116 +9,28 @@
 
 import UIKit
 import Firebase
-import FBSDKLoginKit
 
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate{
+class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var password: UITextField!
     
-    @IBOutlet weak var googleLogin: GIDSignInButton!
-    
-    @IBOutlet weak var fbLogin: FBSDKLoginButton!
-    
     @IBOutlet weak var userLoginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        fbLogin.delegate = self
-        let titleText = NSAttributedString(string: "Sign in with Facebook")
-        fbLogin.setAttributedTitle(titleText, for: .normal)
         
         email.delegate = self
         password.delegate = self
         
-        buttonDesign()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        
+        self.view.addGestureRecognizer(tapGesture)
 
-        }
-    
-    func moveTextField(textField: UITextField, moveDistance: Int, up:Bool) {
-        
-        let moveDuration = 0.3
-        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
-        
-        UIView.beginAnimations("animateTextField", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(moveDuration)
-        self.view.frame = self.view.frame.offsetBy(dx:0, dy: movement)
-        UIView.commitAnimations()
-        
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        moveTextField(textField: textField, moveDistance: -90, up: true)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        moveTextField(textField: textField, moveDistance: -90, up: false)
-    }
-    
-    func buttonDesign() {
-        
-        fbLogin.layer.cornerRadius = 5
-        googleLogin.layer.cornerRadius = 5
-        userLoginButton.layer.cornerRadius = 5
-        
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        
-        if (error != nil) {
-            
-            print(error.localizedDescription)
-            
-        }else if (result.isCancelled) {
-            
-            print("Facebook cancelled")
-            
-        }else {
-            
-            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            
-            Auth.auth().signIn(with: credential) { (user, error) in
-                if let user = user {
-                    
-                    UserDefaults.standard.set(user.uid, forKey: "userUID")
-                    
-                    let currentUserRef = DataService.usersRef.child(user.uid)
-                    var userDict: Dictionary<String, String> = [:]
-                    
-                    if user.providerData[0].displayName != nil {
-                        
-                        userDict["username"] = user.providerData[0].displayName
-                        
-                    }
-                    
-                    if user.providerData[0].email != nil {
-                        
-                        userDict["email"] = user.providerData[0].email
-                        
-                    }
-                    
-                    currentUserRef.setValue(userDict)
-                    
-                    let appDelegateTemp = UIApplication.shared.delegate!
-                    
-                    let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    // load view controller with the storyboardID of HomeTabBarController
-                    let tabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController")
-                    
-                    appDelegateTemp.window?!.rootViewController = tabBarController
-                }
-            }
-        }
-        
-    }
 
     @IBAction func loginButton(_ sender: Any) {
         
@@ -153,11 +65,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                 self.present(controller, animated: true, completion: nil)
             }
         }
-    }
-    
-
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton) {
-                
     }
     
     func dismissKeyboard() {

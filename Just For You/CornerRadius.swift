@@ -19,3 +19,15 @@ class CornerRadius: UIImageView {
     }
 
 }
+
+class CornerRadiusButton: UIButton {
+    
+    override func awakeFromNib() {
+        
+        self.layer.cornerRadius = 20
+        self.clipsToBounds = true
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.white.cgColor
+    }
+    
+}
