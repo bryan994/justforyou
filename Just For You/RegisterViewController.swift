@@ -102,6 +102,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
+            
             if let user = user {
                 
                 // stores into user defaults under key userUID, the user's

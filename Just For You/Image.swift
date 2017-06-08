@@ -50,6 +50,7 @@ class Image{
         }else{
             self.caption = ""
         }
+        
         if let dictLocation = dict["location"] as? String{
             self.location = dictLocation
         }else{

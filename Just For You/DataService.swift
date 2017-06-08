@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 
 struct DataService{
+    
     static var rootRef = Database.database().reference()
     static var usersRef = Database.database().reference().child("users")
     static var imagesRef = Database.database().reference().child("images")

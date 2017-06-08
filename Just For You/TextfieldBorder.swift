@@ -22,6 +22,5 @@ class BorderLine: UITextField {
         
         self.tintColor = .white
         self.textColor = .white
-//        UITextField.appearance().tintColor = .white
     }
 }
