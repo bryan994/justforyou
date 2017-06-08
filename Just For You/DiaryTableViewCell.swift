@@ -71,7 +71,7 @@ class DiaryTableViewCell: UITableViewCell {
         postImageView.isUserInteractionEnabled = true
     
     }
-
+    
     func imagePosted(recognizer: UIGestureRecognizer) {
         
         let tappedImage = recognizer.view as! UIImageView

@@ -38,6 +38,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             return
         }
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
             if let person = user {
                 
                 UserDefaults.standard.set((user!.uid), forKey: "userUID")
